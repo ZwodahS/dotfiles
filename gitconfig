@@ -1,0 +1,27 @@
+[user]
+	name = Eric Ng(ZwodahS)
+	email = ericnjf@gmail.com
+[push]
+	default = current
+[color]
+	ui = true
+[alias]
+    logg = log --oneline --graph --all --decorate
+    ll = log --oneline --graph --all --decorate -n15
+    s = status
+    ss = status -s
+    a = add
+    b = branch
+    co = checkout
+    cm = commit
+    d = diff
+	ds = diff --name-status
+    fe = fetch
+    unstash = stash pop
+	tl = tag -l
+    t = tag
+    vim = difftool --tool vimdiff
+[core]
+	autocrlf = false
+	excludesfile = ~/.gitignore
+	editor = /usr/local/bin/vim
