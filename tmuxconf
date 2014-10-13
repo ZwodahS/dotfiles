@@ -6,11 +6,12 @@ unbind-key -a
 set -g prefix ^Q
 
 bind-key ^Q send-prefix
-bind-key n new-window
+bind-key n new-window -c '#{pane_current_path}'
 bind-key d detach
 bind-key z confirm-before kill-window
-bind-key x kill-pane
+bind-key x confirm-before kill-pane
 bind-key r command-prompt "rename-window %%"
+bind-key t command-prompt "switch-client -t %%"
 bind-key w display-panes
 bind-key ^w display-panes
 
@@ -19,8 +20,11 @@ bind-key j select-pane -D
 bind-key k select-pane -U
 bind-key l select-pane -R
 
-bind-key v split-window -h
-bind-key s split-window -v
+bind-key | command-prompt "resize-pane -x %%"
+bind-key _ command-prompt "resize-pane -y %%"
+
+bind-key v split-window -h -c '#{pane_current_path}'
+bind-key s split-window -v -c '#{pane_current_path}'
 # force a reload of the config file
 bind-key ^R source-file ~/.tmux.conf
 # Resize
@@ -45,6 +49,9 @@ bind-key [ copy-mode
 bind-key ] paste-buffer
 bind-key ^[ select-window -p
 bind-key ^] select-window -n
+
+bind-key ^k swap-pane -U
+bind-key ^j swap-pane -D
 
 # Below from https://mutelight.org/practical-tmux
 # start window numbering at 1
@@ -79,5 +86,7 @@ set -g mode-keys vi
 
 # mouse select
 #set -g mouse-select-pane on
-# setw -g mode-mouse on
-# set-option -g mouse-select-pane on
+setw -g mode-mouse on
+set-option -g mouse-select-pane on
+
+bind y run-shell "tmux show-buffer | xclip -sel clip -i" \; display-message "Copied tmux buffer to system clipboard"

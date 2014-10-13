@@ -6,8 +6,12 @@
 [color]
 	ui = true
 [alias]
-    logg = log --oneline --graph --all --decorate
-    ll = log --oneline --graph --all --decorate -n15
+    logg = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all
+    l = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all -n10
+    ll = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all -n20
+    lll = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all -n30
+    llll = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all -n40
+    lllll = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all -n50
     s = status
     ss = status -s
     a = add
@@ -15,12 +19,18 @@
     co = checkout
     cm = commit
     d = diff
+    dc = diff --cached
 	ds = diff --name-status
-    fe = fetch
+    f = fetch
+    fa = fetch --all
     unstash = stash pop
 	tl = tag -l
     t = tag
     vim = difftool --tool vimdiff
+    smu = submodule update
+    sm = submodule
+    m = merge
+
 [core]
 	autocrlf = false
 	excludesfile = ~/.gitignore
