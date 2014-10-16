@@ -8,7 +8,7 @@ bashdir=~/.dotfiles/bash
 # source the different bash
 
 modules=('unix' 'path' 'git' 'ruby' 'apparix' 'ssh' 'python' 'tmux' 'git_auto')
-for f in modules
+for f in ${modules[@]}
 do
     if [ -e $bashdir/$f ]
     then
