@@ -1,22 +1,2 @@
-# locale
-LC_CTYPE="en_US.UTF-8"
-
-# alias for most unix system
 alias ll='ls -Glh'
-alias lll="ls | sed 's/ /\n/'"
 alias wget="curl -O"
-alias cd..="cd .."
-alias cd...="cd ../.."
-alias cd....="cd ../../.."
-alias v="vim"
-alias mk="make"
-alias rm='echo "do not use rm , use trash-put(trash) instead "; false'
-# make file
-alias rmk="make clean; make"
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-alias ......="cd ../../../../.."
-alias .......="cd ../../../../../.."
-alias showhost="cat ~/.ssh/config | grep 'Host '"
