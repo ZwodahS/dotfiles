@@ -46,7 +46,8 @@ bind-key 9 select-window -t :9
 bind-key : command-prompt
 bind-key ? list-keys
 bind-key [ copy-mode
-bind-key ] paste-buffer
+bind-key p paste-buffer
+bind-key ] list-buffer
 bind-key ^[ select-window -p
 bind-key ^] select-window -n
 
