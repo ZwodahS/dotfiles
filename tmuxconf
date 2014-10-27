@@ -28,10 +28,10 @@ bind-key s split-window -v -c '#{pane_current_path}'
 # force a reload of the config file
 bind-key ^R source-file ~/.tmux.conf
 # Resize
-bind-key Up resize-pane -U
-bind-key Down resize-pane -D
-bind-key Left resize-pane -L
-bind-key Right resize-pane -R
+bind-key -r Up resize-pane -U
+bind-key -r Down resize-pane -D
+bind-key -r Left resize-pane -L
+bind-key -r Right resize-pane -R
 
 bind-key 1 select-window -t :1
 bind-key 2 select-window -t :2
@@ -61,6 +61,7 @@ set -g base-index 1
 set -g pane-base-index 1
 # Faster command sequences
 set -s escape-time 100
+set repeat-time 750
 # Activity monitoring
 setw -g monitor-activity on
 set -g visual-activity on

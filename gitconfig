@@ -34,4 +34,4 @@
 [core]
 	autocrlf = false
 	excludesfile = ~/.gitignore
-	editor = /usr/local/bin/vim
+    editor = /usr/local/bin/vim
