@@ -60,7 +60,7 @@ set -g base-index 1
 # start pane numbering at 1
 set -g pane-base-index 1
 # Faster command sequences
-set -s escape-time 100
+set -s escape-time 1000
 set repeat-time 750
 # Activity monitoring
 setw -g monitor-activity on
