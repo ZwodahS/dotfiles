@@ -2,3 +2,11 @@ alias tma='tmux attach -t'
 alias tmn='tmux new -s'
 alias tms='tmux switch -t'
 alias tml='tmux ls'
+
+# Fix SSH Forward-Agent in tmux sessions
+# https://gist.github.com/martijnvermaat/8070533
+if [[ -S "$SSH_AUTH_SOCK" && ! -h "$SSH_AUTH_SOCK" ]]; then
+    ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock;
+fi
+
+export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock;
