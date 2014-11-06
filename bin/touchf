@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+if [ "$1" == '' ]; then
+    echo 'touchf <file>'
+    echo 'if directory do not exist, it will be made'
+    exit 1
+fi
+
+DIR=`dirname $1`
+if [ ! -e $DIR ]; then 
+    mkdir -p $DIR
+fi
+
+touch $1

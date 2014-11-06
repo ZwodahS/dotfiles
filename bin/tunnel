@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+if [ -z "$1" ]; then
+    echo "tunnel connect <SERVER> <TARGET_HOST> <LOCAL_PORT> <TARGET_PORT>[optional]"
+    echo "tunnel closeall"
+    echo "tunnel view"
+    exit 1
+fi
+
+if [ "$1" == 'connect' ]; then
+    URL=$2
+    TARGET_HOST=$3
+    LOCAL_PORT=$4
+    TARGET_PORT=$5
+    if [ -z "$TARGET_PORT" ]; then
+        TARGET_PORT=$LOCAL_PORT
+    fi
+
+    if [ -z "$LOCAL_PORT" -o -z "$TARGET_HOST" -o -z "$TARGET_PORT" -o -z "$URL" ]; then
+        echo "tunnel connect <SERVER> <TARGET_HOST> <LOCAL_PORT> <TARGET_PORT>[optional]"
+        exit 1
+    fi
+    ssh -f -L $LOCAL_PORT:$TARGET_HOST:$TARGET_PORT $URL -N
+elif [ "$1" == 'closeall' ]; then
+    for p in `ps aux | grep 'ssh -f -L' | grep -v 'grep' | awk '{print $2;}'`; do kill $p; done
+elif [ "$1" == 'view' ]; then
+    # for p in `ps aux | grep 'ssh -f -L' | grep -v 'grep'`; do echo $p ; done
+    ps aux | grep 'ssh -f -L' | grep -v 'grep'
+else
+    echo "tunnel connect <SERVER> <TARGET_HOST> <LOCAL_PORT> <TARGET_PORT>[optional]"
+    echo "tunnel closeall"
+    exit 1
+fi
