@@ -15,10 +15,14 @@ bind-key t command-prompt "switch-client -t %%"
 bind-key w display-panes
 bind-key ^w display-panes
 
-bind-key h select-pane -L
+# bind-key h select-pane -L
+bind-key h previous-window
+bind-key ^H previous-window
 bind-key j select-pane -D
 bind-key k select-pane -U
-bind-key l select-pane -R
+bind-key l next-window
+bind-key ^L next-window
+# bind-key l select-pane -R
 
 bind-key | command-prompt "resize-pane -x %%"
 bind-key _ command-prompt "resize-pane -y %%"
