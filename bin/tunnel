@@ -1,9 +1,15 @@
 #!/usr/bin/env bash
 
-if [ -z "$1" ]; then
+function print_help()
+{
     echo "tunnel connect <SERVER> <TARGET_HOST> <LOCAL_PORT> <TARGET_PORT>[optional]"
     echo "tunnel closeall"
-    echo "tunnel view"
+    echo "tunnel close tunnel : similar as kill process_id"
+    echo "tunnel list"
+}
+
+if [ -z "$1" ]; then
+    print_help
     exit 1
 fi
 
@@ -21,13 +27,20 @@ if [ "$1" == 'connect' ]; then
         exit 1
     fi
     ssh -f -L $LOCAL_PORT:$TARGET_HOST:$TARGET_PORT $URL -N
+
 elif [ "$1" == 'closeall' ]; then
     for p in `ps aux | grep 'ssh -f -L' | grep -v 'grep' | awk '{print $2;}'`; do kill $p; done
-elif [ "$1" == 'view' ]; then
-    # for p in `ps aux | grep 'ssh -f -L' | grep -v 'grep'`; do echo $p ; done
-    ps aux | grep 'ssh -f -L' | grep -v 'grep'
+
+elif [ "$1" == 'close' ]; then
+    if [ "$2" == '' ]; then
+        print_help
+    else
+        kill $2
+    fi
+
+elif [ "$1" == 'list' ]; then
+    ps aux | grep -v 'grep' | grep 'ssh -f -L .* -N' | awk '{print $2 " - " $14 " " $15}'
 else
-    echo "tunnel connect <SERVER> <TARGET_HOST> <LOCAL_PORT> <TARGET_PORT>[optional]"
-    echo "tunnel closeall"
+    print_help
     exit 1
 fi
