@@ -1,1 +1,1 @@
-alias switchvenv='. venv/bin/activate'
+alias pyenv='. venv/bin/activate'
