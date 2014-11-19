@@ -52,11 +52,12 @@ bind-key ? list-keys
 bind-key [ copy-mode
 bind-key p paste-buffer
 bind-key ] list-buffer
-bind-key ^[ select-window -p
-bind-key ^] select-window -n
 
 bind-key ^k swap-pane -U
 bind-key ^j swap-pane -D
+bind-key ^h swap-window -t -1
+bind-key ^l swap-window -t +1
+bind-key ^m command-prompt "swap-window -t %%"
 
 # Below from https://mutelight.org/practical-tmux
 # start window numbering at 1
