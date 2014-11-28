@@ -29,6 +29,11 @@ if [ $TARGET == '__all__' -o $TARGET == 'bash' ]; then
         rm -f .bash_profile
     fi
     cp .dotfiles/bash_profile .bash_profile
+
+    if [ -e .gitignore ]; then
+        rm -f .gitignore
+    fi
+    ln -s .dotfiles/gitignore .gitignore
 fi
 
 if [ $TARGET == '__all__' -o $TARGET == 'vim' ]; then
