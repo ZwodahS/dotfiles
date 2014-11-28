@@ -73,14 +73,14 @@ set -g visual-activity on
 
 # Set status bar
 set -g status-bg '#333333'
-set -g status-fg blue
-set -g status-attr bold
+set -g status-fg green
+# set -g status-attr bold
 #set -g status-left ""
 #set -g status-right "#[fg=green]#H"
 
 # Highlight active window
-set-window-option -g window-status-current-bg '#bbbbbb'
-set-window-option -g window-status-current-fg red
+set-window-option -g window-status-current-bg '#00FF00'
+set-window-option -g window-status-current-fg '#333333'
 set-window-option -g window-status-attr bold 
 
 # Pane number display
