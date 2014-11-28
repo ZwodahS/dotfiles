@@ -79,7 +79,7 @@ set -g status-fg green
 #set -g status-right "#[fg=green]#H"
 
 # Highlight active window
-set-window-option -g window-status-current-bg '#00FF00'
+set-window-option -g window-status-current-bg '#FFFF00'
 set-window-option -g window-status-current-fg '#333333'
 set-window-option -g window-status-attr bold 
 
