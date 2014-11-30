@@ -1,4 +1,3 @@
-
 C_RED=$(tput setaf 1)
 C_GREEN=$(tput setaf 2)
 C_YELLOW=$(tput setaf 3)
@@ -13,19 +12,12 @@ parse_git_user ()
     if git rev-parse --git-dir >/dev/null 2>&1
     then
         USERNAME=$(git config user.name)
-        EMAIL=$(git config user.email)
         if [ -z "$USERNAME" ]; then
             return 0
         fi
 
-        USER=${C_GREEN}
+        USER=${C_BLUE}
         USER+=$USERNAME
-        if [ -n "$EMAIL" ]; then
-            USER+=${C_CYAN}
-            USER+="("
-            USER+=$EMAIL
-            USER+=")"
-        fi
         USER+=${C_CLEAR}
         USER+="@"
         echo -e $USER
@@ -76,6 +68,26 @@ get_time ()
     echo "[${C_BLUE}$(date +'%d-%b-%G@%k:%M:%S')${C_CLEAR}]"
 }
 
-PS1='${C_RED}#${C_CLEAR}[\[${C_BLUE}\]\w\[${C_CLEAR}\]] [${C_GREEN}\u${C_CLEAR}$(get_hostname)] [\[$(parse_git_user)$(branch_color)\]$(parse_git_branch)\[${C_CLEAR}\]]${C_RED}#${C_CLEAR} $(get_time)\n- '
+bound ()
+{
+    echo "${C_RED}#${C_CLEAR}"
+}
+
+get_working_dir ()
+{
+    echo '[\[${C_BLUE}\]\w\[${C_CLEAR}\]]'
+}
+
+get_host ()
+{
+    echo '[${C_GREEN}\u${C_CLEAR}$(get_hostname)]'
+}
+
+get_git ()
+{
+    echo '[\[$(parse_git_user)$(branch_color)\]$(parse_git_branch)\[${C_CLEAR}\]]'
+}
+
+PS1="$(bound)$(get_working_dir)$(get_host)$(get_git)$(get_time)$(bound)\n-"
 
 alias g=git
