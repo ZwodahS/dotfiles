@@ -1,5 +1,4 @@
-#!/bin/bash
-
+#!/bin/bash 
 TARGET='__all__'
 
 if [ "$1" == '' ]; then
@@ -12,6 +11,10 @@ else
     echo "Invalid target"
     exit 1
 fi
+
+echo -n "Enter hostname name:"
+read HOSTNAME
+echo $HOSTNAME > ~/.dotfiles/hostname
 
 if [ $TARGET == '__all__' -o $TARGET == 'bash' ]; then
     cd ~
