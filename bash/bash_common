@@ -19,3 +19,7 @@ alias ......="cd ../../../../.."
 alias .......="cd ../../../../../.."
 alias showhost="cat ~/.ssh/config | grep 'Host '"
 alias reloadbash=". ~/.bash_profile"
+
+# export HISTCONTROL=ignoredups
+export HISTCONTROL=erasedups:ignorespace
+# export HISTCONTROL=ignorespace
