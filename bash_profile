@@ -19,6 +19,7 @@ modules=()
 #modules+=('ssh')
 #modules+=('python')
 #modules+=('tmux')
+#modules+=('history')
 for f in ${modules[@]}
 do
     if [ -e $bashdir/$f ]

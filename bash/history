@@ -1,0 +1,21 @@
+alias h='history'
+
+HISTCONTROL=ignorespace:ignoredups
+# export HISTCONTROL=erasedups #:ignorespace
+# shopt -s histappend
+# http://unix.stackexchange.com/questions/1288/preserve-bash-history-in-multiple-terminal-windows
+history ()
+{
+    _bash_history_sync
+    builtin history "$@"
+}
+HISTSIZE=9000
+_bash_history_sync()
+{
+    builtin history -a
+    HISTFILESIZE=$HISTSIZE
+    builtin history -c
+    builtin history -r
+}
+
+export PROMPT_COMMAND='history -a'
