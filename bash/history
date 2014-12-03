@@ -1,4 +1,8 @@
 alias h='history'
+alias hclean="cat ~/.bash_history | sed 's/ *$//g' | sort | uniq > ~/.bash_history.clean && mv ~/.bash_history.clean ~/.bash_history"
+alias ht="history | tail -n15"
+alias htt="history | tail -n30"
+alias httt="history | tail -n45"
 
 HISTCONTROL=ignorespace:ignoredups
 # export HISTCONTROL=erasedups #:ignorespace
