@@ -19,4 +19,4 @@ alias ......="cd ../../../../.."
 alias .......="cd ../../../../../.."
 alias showhost="cat ~/.ssh/config | grep 'Host '"
 alias bashreload=". ~/.bash_profile"
-
+alias gp="grep"
