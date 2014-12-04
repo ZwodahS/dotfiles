@@ -1,4 +1,3 @@
-alias h='history'
 alias hclean="cat ~/.bash_history | sed 's/ *$//g' | sort | uniq > ~/.bash_history.clean && mv ~/.bash_history.clean ~/.bash_history"
 alias ht="history | tail -n15"
 alias htt="history | tail -n30"
@@ -8,18 +7,29 @@ HISTCONTROL=ignorespace:ignoredups
 # export HISTCONTROL=erasedups #:ignorespace
 # shopt -s histappend
 # http://unix.stackexchange.com/questions/1288/preserve-bash-history-in-multiple-terminal-windows
-history ()
+function history ()
 {
     _bash_history_sync
     builtin history "$@"
 }
 HISTSIZE=9000
-_bash_history_sync()
+function _bash_history_sync()
 {
     builtin history -a
     HISTFILESIZE=$HISTSIZE
     builtin history -c
     builtin history -r
 }
+
+function _h ()
+{
+    params=$@
+    if [ -z "$params" ]; then
+        builtin history
+    else
+        builtin history | grep "$params"
+    fi
+}
+alias h="_h"
 
 export PROMPT_COMMAND='history -a'
