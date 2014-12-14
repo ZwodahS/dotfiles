@@ -1,42 +1,39 @@
+####################################################################
+# TmUX configuration
+# https://github.com/ZwodahS/dotfiles
+####################################################################
 # unbind all keys
 # If i am not using, don't even have them in the first place.
 unbind-key -a
-
 # Set the prefix to ^Q, kind of wanted ^W but it clashes with my vim.
 set -g prefix ^Q
 
-bind-key ^Q send-prefix
-bind-key n new-window -c '#{pane_current_path}'
+#################### basic stuffs #####################
+# detach tmux
 bind-key d detach
-bind-key z confirm-before kill-window
-bind-key x confirm-before kill-pane
-bind-key r command-prompt "rename-window %%"
+# switch tmux client
 bind-key t command-prompt "switch-client -t %%"
-bind-key w display-panes
-bind-key ^w display-panes
-
-# bind-key h select-pane -L
-bind-key h previous-window
-bind-key ^H previous-window
-bind-key j select-pane -D
-bind-key k select-pane -U
-bind-key l next-window
-bind-key ^L next-window
-# bind-key l select-pane -R
-
-bind-key | command-prompt "resize-pane -x %%"
-bind-key _ command-prompt "resize-pane -y %%"
-
-bind-key v split-window -h -c '#{pane_current_path}'
-bind-key s split-window -v -c '#{pane_current_path}'
+# send the prefix, in case of nested tmux
+# WARNING : NESTED TMUX DESTROY YOUR SANITY
+bind-key ^Q send-prefix
+# clock mode, for fun lol
+bind-key c clock-mode
 # force a reload of the config file
 bind-key ^R source-file ~/.tmux.conf
-# Resize
-bind-key -r Up resize-pane -U 2
-bind-key -r Down resize-pane -D 2
-bind-key -r Left resize-pane -L 2
-bind-key -r Right resize-pane -R 2
+# command prompt for rarely used commands
+bind-key : command-prompt
+# list all the binded commands
+bind-key ? list-keys
 
+#################### window stuffs ####################
+bind-key n new-window -c '#{pane_current_path}'         # new
+bind-key z confirm-before kill-window                   # kill
+bind-key r command-prompt "rename-window %%"            # rename
+bind-key h previous-window                              # previous window <
+bind-key ^H previous-window
+bind-key l next-window                                  # next window >
+bind-key ^L next-window
+# window selection, my sanity only allows for 9 windows .. and my keyboard only have 1-9
 bind-key 1 select-window -t :1
 bind-key 2 select-window -t :2
 bind-key 3 select-window -t :3
@@ -46,19 +43,35 @@ bind-key 6 select-window -t :6
 bind-key 7 select-window -t :7
 bind-key 8 select-window -t :8
 bind-key 9 select-window -t :9
-
-bind-key : command-prompt
-bind-key ? list-keys
-bind-key [ copy-mode
-bind-key p paste-buffer
-bind-key ] list-buffer
-
-bind-key ^k swap-pane -U
-bind-key ^j swap-pane -D
+# window swapping
 bind-key ^h swap-window -t -1
 bind-key ^l swap-window -t +1
 bind-key ^m command-prompt "swap-window -t %%"
 
+#################### pane stuffs ####################
+bind-key x confirm-before kill-pane                     # kill
+bind-key w display-panes                                # selection
+bind-key ^w display-panes
+bind-key | command-prompt "resize-pane -x %%"           # resize width
+bind-key _ command-prompt "resize-pane -y %%"           # resize height
+bind-key v split-window -h -c '#{pane_current_path}'    # vertical split
+bind-key s split-window -v -c '#{pane_current_path}'    # horizontal split
+# pane resizing, by factor of 2, 1 is too slow, 3 is too fast.
+bind-key -r Up resize-pane -U 2
+bind-key -r Down resize-pane -D 2
+bind-key -r Left resize-pane -L 2
+bind-key -r Right resize-pane -R 2
+# pane swapping
+bind-key ^k swap-pane -U    
+bind-key ^j swap-pane -D
+
+#################### buffer stuffs ####################
+bind-key [ copy-mode
+bind-key o command-prompt "save-buffer -b 0 %%"
+bind-key p paste-buffer
+bind-key ] choose-buffer
+
+#################### Tmux configuration ####################
 # Below from https://mutelight.org/practical-tmux
 # start window numbering at 1
 set -g base-index 1
@@ -70,30 +83,19 @@ set -g repeat-time 750
 # Activity monitoring
 setw -g monitor-activity on
 set -g visual-activity on
-
 # Set status bar
 set -g status-bg '#333333'
 set -g status-fg green
-# set -g status-attr bold
-#set -g status-left ""
-#set -g status-right "#[fg=green]#H"
-
 # Highlight active window
 set-window-option -g window-status-current-bg '#FFFF00'
 set-window-option -g window-status-current-fg '#333333'
-set-window-option -g window-status-attr bold 
-
+set-window-option -g window-status-attr bold
 # Pane number display
 set-option -g display-panes-active-colour blue
 set-option -g display-panes-colour colour166
 set-option -g status-position top
-
 # vi keys in copy mode
 set -g mode-keys vi
-
 # mouse select
-#set -g mouse-select-pane on
 setw -g mode-mouse on
 set-option -g mouse-select-pane on
-
-bind y run-shell "tmux show-buffer | xclip -sel clip -i" \; display-message "Copied tmux buffer to system clipboard"
