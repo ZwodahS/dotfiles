@@ -1,10 +1,10 @@
 [user]
-	name = Eric Ng
-	email = ericnjf@gmail.com
+    name = Eric Ng
+    email = ericnjf@gmail.com
 [push]
-	default = current
+    default = current
 [color]
-	ui = true
+    ui = true
 [alias]
     logg = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all
     l = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all -n10
@@ -20,18 +20,17 @@
     cm = commit
     d = diff
     dc = diff --cached
-	ds = diff --name-status
+    ds = diff --name-status
     f = fetch
     fa = fetch --all
     unstash = stash pop
-	tl = tag -l
+    tl = tag -l
     t = tag
     vim = difftool --tool vimdiff
     smu = submodule update
     sm = submodule
     m = merge
-
 [core]
-	autocrlf = false
-	excludesfile = ~/.gitignore
+    autocrlf = false
+    excludesfile = ~/.gitignore
     editor = /usr/bin/vim
