@@ -1,1 +1,20 @@
-alias pyenv='. venv/bin/activate'
+
+_pyenv ()
+{
+    if [ -z "$1" ]; then
+        DIR='venv'
+    else
+        DIR=$1
+    fi
+
+    source $DIR/bin/activate
+}
+
+alias pyenv='_pyenv'
+
+_venv34 ()
+{
+    pyvenv-3.4 --without-pip $1 && source $1/bin/activate && curl https://bootstrap.pypa.io/get-pip.py | python && deactivate && source $1/bin/activate
+}
+
+alias virtualenv3='_venv34'
