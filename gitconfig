@@ -30,6 +30,7 @@
     smu = submodule update
     sm = submodule
     m = merge
+    sb = syncbranch
 [core]
     autocrlf = false
     excludesfile = ~/.gitignore

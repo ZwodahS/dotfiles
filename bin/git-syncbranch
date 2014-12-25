@@ -1,0 +1,33 @@
+#!/bin/bash
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+sync() {
+    if [ "$CURRENT_BRANCH" == "$1" ]; then
+        git co -B $1 $2
+    else
+        git b -f $1 $2
+    fi
+}
+
+move_branch() {
+    if [ -z "$1" ]; then
+       exit 0
+    fi
+
+    if [ "$1" != "$CURRENT_BRANCH" ]; then
+        git b -f $1 $CURRENT_BRANCH
+    fi
+}
+
+if [ "$1" == "sync" ]; then
+    if [ -e ".gitbranches" ]; then
+        while read line
+        do
+            sync $line
+        done < ".gitbranches"
+    fi
+elif [ "$1" == "move" ]; then
+    shift
+    for B in $*; do
+        move_branch $B
+    done
+fi
