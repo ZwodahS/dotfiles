@@ -15,6 +15,7 @@ move_branch() {
 
     if [ "$1" != "$CURRENT_BRANCH" ]; then
         git b -f $1 $CURRENT_BRANCH
+        echo "moving $1 to HEAD"
     fi
 }
 
