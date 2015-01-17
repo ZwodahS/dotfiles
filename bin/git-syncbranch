@@ -31,4 +31,9 @@ elif [ "$1" == "move" ]; then
     for B in $*; do
         move_branch $B
     done
+elif [ "$1" == "add" ]; then
+    shift
+    if [ -n "$1" -a -n "$2" ]; then
+        echo "$1" "$2" >> .gitbranches
+    fi
 fi
