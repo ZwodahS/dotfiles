@@ -2,7 +2,14 @@
 _pyenv ()
 {
     if [ -z "$1" ]; then
-        DIR='venv'
+        if [ -e "venv" ]; then
+            DIR='venv'
+        elif [ -e "venv3" ]; then
+            DIR='venv3'
+        else
+            echo "No virtualenv"
+            return
+        fi
     else
         DIR=$1
     fi
@@ -18,3 +25,4 @@ _venv34 ()
 }
 
 alias virtualenv3='_venv34'
+export PYTHONSTARTUP="$HOME/.pythonrc"
