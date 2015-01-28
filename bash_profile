@@ -8,18 +8,18 @@ bashdir=~/.dotfiles/bash
 # source the different bash
 # comment/uncomment when necessary
 modules=()
-#modules+=('bash_common')
-#modules+=('linux')
+modules+=('bash_common')
+modules+=('linux')
 #modules+=('unix')
-#modules+=('path')
-#modules+=('git')
-#modules+=('git_auto')
+modules+=('path')
+modules+=('git')
+modules+=('git_auto')
 #modules+=('ruby')
 #modules+=('apparix')
 #modules+=('ssh')
-#modules+=('python')
-#modules+=('tmux')
-#modules+=('history')
+modules+=('python')
+modules+=('tmux')
+modules+=('history')
 for f in ${modules[@]}
 do
     if [ -e $bashdir/$f ]
