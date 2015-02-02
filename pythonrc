@@ -12,3 +12,5 @@ readline.read_history_file(history)
 readline.parse_and_bind('tab: complete')
 atexit.register(readline.write_history_file, history)
 
+import rlcompleter, readline
+readline.parse_and_bind('tab:complete')
