@@ -21,3 +21,6 @@ alias showhost="cat ~/.ssh/config | grep 'Host '"
 alias bashreload=". ~/.bash_profile"
 alias gp="grep"
 alias t="tail"
+function set_title {
+    echo -ne "\033]0;"$*"\007"
+}
