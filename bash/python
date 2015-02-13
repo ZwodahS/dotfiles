@@ -26,3 +26,16 @@ _venv34 ()
 
 alias virtualenv3='_venv34'
 export PYTHONSTARTUP="$HOME/.pythonrc"
+
+_pyinterpreter ()
+{
+    if [ -e 'venv3' ]; then
+        ipython3
+    elif [ -e 'venv' ]; then
+        ipython
+    else
+        ipython3
+    fi
+}
+
+alias pyinterp='_pyinterpreter'
