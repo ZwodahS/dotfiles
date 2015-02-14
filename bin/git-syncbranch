@@ -36,4 +36,7 @@ elif [ "$1" == "add" ]; then
     if [ -n "$1" -a -n "$2" ]; then
         echo "$1" "$2" >> .gitbranches
     fi
+else
+    echo "git syncbranch sync : sync all branches"
+    echo "git syncbranch add <branchname> <remotename>"
 fi
