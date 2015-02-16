@@ -7,16 +7,18 @@ elif [ "$1" == 'vim' ]; then
     TARGET='vim'
 elif [ "$1" == 'bash' ]; then
     TARGET='bash'
+elif [ "$1" == 'bin' ]; then
+    TARGET='bin'
 else
     echo "Invalid target"
     exit 1
 fi
 
-echo -n "Enter hostname name:"
-read HOSTNAME
-echo $HOSTNAME > ~/.dotfiles/hostname
 
 if [ $TARGET == '__all__' -o $TARGET == 'bash' ]; then
+    echo -n "Enter hostname name:"
+    read HOSTNAME
+    echo $HOSTNAME > ~/.dotfiles/hostname
     cd ~
     if [ -e .tmux.conf ]; then
         rm -f .tmux.conf
@@ -54,4 +56,14 @@ if [ $TARGET == '__all__' -o $TARGET == 'vim' ]; then
         rm -rf .vimrc
     fi
     ln -s .vim/vimrc .vimrc
+fi
+
+if [ $TARGET == '__all__' -o $TARGET == 'bin' ]; then
+    cd ~
+    if [ ! -e bin ]; then
+        mkdir bin
+    fi
+    cd bin
+    ln -s ~/.dotfiles/bin/* .
+    cd ~
 fi
