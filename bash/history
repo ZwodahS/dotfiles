@@ -27,7 +27,15 @@ function _h ()
     if [ -z "$params" ]; then
         builtin history
     else
-        builtin history | grep "$params"
+        TMP_HISTORY=~/.bash_history_partial.tmp
+        builtin history > $TMP_HISTORY
+        for param in $params; do
+            echo $param
+            cat $TMP_HISTORY | grep "$param" > $TMP_HISTORY.2
+            mv $TMP_HISTORY.2 $TMP_HISTORY
+        done
+        cat $TMP_HISTORY
+        \rm $TMP_HISTORY
     fi
 }
 alias h="_h"

@@ -15,21 +15,23 @@
     s = status
     ss = status -s
     a = add
+    au = add -u
     b = branch
     co = checkout
-    cm = commit
     d = diff
     dc = diff --cached
     ds = diff --name-status
-    f = fetch
     fa = fetch --all
+
     unstash = stash pop
+
     tl = tag -l
     t = tag
     vim = difftool --tool vimdiff
     smu = submodule update
     sm = submodule
     m = merge
+
     sb = syncbranch
 [core]
     autocrlf = false
