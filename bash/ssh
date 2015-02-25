@@ -1,6 +1,13 @@
 SSH_ENV=$HOME/.ssh/environment
 SSH_HOME=$HOME/.ssh/
 
+function load_keys {
+    echo "loading"
+    for key in $(cat ~/.ssh/keys); do
+        ssh-add ~/.ssh/$key
+    done
+}
+
 # start the ssh-agent
 function start_agent {
     echo "Initializing new SSH agent..."
@@ -9,12 +16,7 @@ function start_agent {
     echo succeeded
     chmod 600 "${SSH_ENV}"
     . "${SSH_ENV}"  /dev/null
-}
-
-function load_keys {
-    for key in $(cat ~/.ssh/keys); do
-        ssh-add ~/.ssh/$key
-    done
+    load_keys;
 }
 
 if [ -f "${SSH_ENV}" ]; then
