@@ -30,7 +30,6 @@ function _h ()
         TMP_HISTORY=~/.bash_history_partial.tmp
         builtin history > $TMP_HISTORY
         for param in $params; do
-            echo $param
             cat $TMP_HISTORY | grep "$param" > $TMP_HISTORY.2
             mv $TMP_HISTORY.2 $TMP_HISTORY
         done
@@ -40,4 +39,33 @@ function _h ()
 }
 alias h="_h"
 
+function _hrmindex()
+{
+    index=$1
+    if [ -z "$index" ]; then
+        echo "nothing to remove"
+    else
+        cat ~/.bash_history | sed "$index"d > ~/.bash_history.clean
+        mv ~/.bash_history.clean ~/.bash_history
+    fi
+}
+
+alias hrmi="_hrmindex"
+
+function _hrmgrep()
+{
+    params=$@
+    TMP_HISTORY=~/.bash_history_partial.tmp
+    if [ -z "$params" ]; then
+        echo "nothing to remove"
+    else
+        cat ~/.bash_history | grep -v $params > $TMP_HISTORY.2
+        mv $TMP_HISTORY.2 ~/.bash_history
+    fi
+}
+
+alias hrm="_hrmgrep"
+
+
 export PROMPT_COMMAND='history -a'
+
