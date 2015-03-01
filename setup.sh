@@ -39,6 +39,11 @@ if [ $TARGET == '__all__' -o $TARGET == 'bash' ]; then
         rm -f .gitignore
     fi
     ln -s .dotfiles/gitignore .gitignore
+
+    if [ -e .ackrc ]; then
+        rm -f .ackrc
+    fi
+    ln -s .dotfiles/ackrc .ackrc
 fi
 
 if [ $TARGET == '__all__' -o $TARGET == 'vim' ]; then
