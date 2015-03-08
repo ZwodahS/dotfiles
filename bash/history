@@ -12,7 +12,7 @@ function history ()
     _bash_history_sync
     builtin history "$@"
 }
-HISTSIZE=9000
+HISTSIZE=100000
 function _bash_history_sync()
 {
     builtin history -a
@@ -63,9 +63,3 @@ function _hrmgrep()
         mv $TMP_HISTORY.2 ~/.bash_history
     fi
 }
-
-alias hrm="_hrmgrep"
-
-
-export PROMPT_COMMAND='history -a'
-
