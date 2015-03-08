@@ -33,6 +33,7 @@ bind-key h previous-window                              # previous window <
 bind-key ^H previous-window
 bind-key l next-window                                  # next window >
 bind-key ^L next-window
+bind-key W choose-window
 # window selection, my sanity only allows for 9 windows .. and my keyboard only have 1-9
 bind-key 1 select-window -t :1
 bind-key 2 select-window -t :2
