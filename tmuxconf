@@ -61,16 +61,16 @@ bind-key s split-window -v -c '#{pane_current_path}'    # horizontal split
 # pane resizing, by factor of 2, 1 is too slow, 3 is too fast.
 bind-key -r Up resize-pane -U 2
 bind-key -r k resize-pane -U 2
-bind-key K resize-pane -y 1000
+bind-key K resize-pane -U 1000
 bind-key -r Down resize-pane -D 2
 bind-key -r j resize-pane -D 2
-bind-key J resize-pane -y 2
+bind-key J resize-pane -D 1000
 bind-key -r Left resize-pane -L 2
 bind-key -r h resize-pane -L 2
-bind-key H resize -x 2
+bind-key H resize -L 1000
 bind-key -r Right resize-pane -R 2
 bind-key -r l resize-pane -R 2
-bind-key L resize -x 1000
+bind-key L resize -R 1000
 # pane swapping
 bind-key ^k swap-pane -U    
 bind-key ^j swap-pane -D
