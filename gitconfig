@@ -33,6 +33,8 @@
     m = merge
 
     sb = syncbranch
+    move = syncbranch move
+    sync = syncbranch sync
 [core]
     autocrlf = false
     excludesfile = ~/.gitignore
