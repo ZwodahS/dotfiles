@@ -7,11 +7,6 @@ HISTCONTROL=ignorespace:ignoredups
 # export HISTCONTROL=erasedups #:ignorespace
 # shopt -s histappend
 # http://unix.stackexchange.com/questions/1288/preserve-bash-history-in-multiple-terminal-windows
-function history ()
-{
-    _bash_history_sync
-    builtin history "$@"
-}
 HISTSIZE=100000
 function _bash_history_sync()
 {
@@ -21,14 +16,19 @@ function _bash_history_sync()
     builtin history -r
 }
 
+function history ()
+{
+    _bash_history_sync
+    builtin history "$@"
+}
 function _h ()
 {
     params=$@
     if [ -z "$params" ]; then
-        builtin history
+        history
     else
         TMP_HISTORY=~/.bash_history_partial.tmp
-        builtin history > $TMP_HISTORY
+        history > $TMP_HISTORY
         for param in $params; do
             cat $TMP_HISTORY | grep "$param" > $TMP_HISTORY.2
             mv $TMP_HISTORY.2 $TMP_HISTORY
