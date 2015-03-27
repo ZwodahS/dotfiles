@@ -103,7 +103,7 @@ set-window-option -g window-status-attr bold
 # Pane number display
 set-option -g display-panes-active-colour blue
 set-option -g display-panes-colour colour166
-set-option -g status-position top
+set-option -g status-position bottom
 # vi keys in copy mode
 set -g mode-keys vi
 # mouse select
