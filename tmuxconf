@@ -11,8 +11,6 @@ set -g prefix ^Q
 #################### basic stuffs #####################
 # detach tmux
 bind-key d detach
-# switch tmux client
-bind-key t command-prompt "switch-client -t %%"
 # send the prefix, in case of nested tmux
 # WARNING : NESTED TMUX DESTROY YOUR SANITY
 bind-key ^Q send-prefix
@@ -24,17 +22,16 @@ bind-key ^R source-file ~/.tmux.conf
 bind-key : command-prompt
 # list all the binded commands
 bind-key ? list-keys
-
+#################### session stuffs ####################
+# switch tmux session
+bind-key t command-prompt "switch-client -t %%"
+# choose tmux session
+bind-key T choose-session
 #################### window stuffs ####################
 bind-key n new-window -c '#{pane_current_path}'         # new
 bind-key z confirm-before kill-window                   # kill
 bind-key r command-prompt "rename-window %%"            # rename
-bind-key h previous-window                              # previous window <
-bind-key ^H previous-window
-bind-key l next-window                                  # next window >
-bind-key ^L next-window
 bind-key W choose-window
-# window selection, my sanity only allows for 9 windows .. and my keyboard only have 1-9
 bind-key 1 select-window -t :1
 bind-key 2 select-window -t :2
 bind-key 3 select-window -t :3
@@ -49,7 +46,6 @@ bind-key 0 command-prompt "select-window -t :%%"
 bind-key ^h swap-window -t -1
 bind-key ^l swap-window -t +1
 bind-key ^m command-prompt "swap-window -t %%"
-
 #################### pane stuffs ####################
 bind-key x confirm-before kill-pane                     # kill
 bind-key w display-panes                                # selection
@@ -74,13 +70,11 @@ bind-key L resize -R 1000
 # pane swapping
 bind-key ^k swap-pane -U    
 bind-key ^j swap-pane -D
-
 #################### buffer stuffs ####################
 bind-key [ copy-mode
 bind-key o command-prompt "save-buffer -b 0 %%"
 bind-key p paste-buffer
 bind-key ] choose-buffer
-
 #################### Tmux configuration ####################
 # Below from https://mutelight.org/practical-tmux
 # start window numbering at 1
