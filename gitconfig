@@ -23,6 +23,9 @@
     ds = diff --name-status
     fa = fetch --all
 
+    d1 = diff HEAD~1..HEAD
+    d2 = diff HEAD~2..HEAD
+
     unstash = stash pop
 
     tl = tag -l
