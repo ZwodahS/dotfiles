@@ -28,7 +28,7 @@ if [ "$1" == 'connect' -o "$1" == '+' ]; then
     fi
     ssh -f -L $LOCAL_PORT:$TARGET_HOST:$TARGET_PORT $URL -N
 
-elif [ "$1" == 'closeall' -o "$1" == '-* ]; then
+elif [ "$1" == 'closeall' -o "$1" == '-*' ]; then
     for p in `ps aux | grep 'ssh -f -L' | grep -v 'grep' | awk '{print $2;}'`; do kill $p; done
 
 elif [ "$1" == 'close' -o "$1" == '-' ]; then
