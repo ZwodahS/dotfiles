@@ -2,10 +2,10 @@
 
 function print_help()
 {
-    echo "tunnel connect <SERVER> <TARGET_HOST> <LOCAL_PORT> <TARGET_PORT>[optional]"
-    echo "tunnel closeall"
-    echo "tunnel close tunnel : similar as kill process_id"
-    echo "tunnel list"
+    echo "tunnel connect(+) <SERVER> <TARGET_HOST> <LOCAL_PORT> <TARGET_PORT>[optional]"
+    echo "tunnel closeall(-*)"
+    echo "tunnel close(-) tunnel : similar as kill process_id"
+    echo "tunnel list(l)"
 }
 
 if [ -z "$1" ]; then
@@ -13,7 +13,7 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-if [ "$1" == 'connect' ]; then
+if [ "$1" == 'connect' -o "$1" == '+' ]; then
     URL=$2
     TARGET_HOST=$3
     LOCAL_PORT=$4
@@ -28,17 +28,17 @@ if [ "$1" == 'connect' ]; then
     fi
     ssh -f -L $LOCAL_PORT:$TARGET_HOST:$TARGET_PORT $URL -N
 
-elif [ "$1" == 'closeall' ]; then
+elif [ "$1" == 'closeall' -o "$1" == '-* ]; then
     for p in `ps aux | grep 'ssh -f -L' | grep -v 'grep' | awk '{print $2;}'`; do kill $p; done
 
-elif [ "$1" == 'close' ]; then
+elif [ "$1" == 'close' -o "$1" == '-' ]; then
     if [ "$2" == '' ]; then
         print_help
     else
         kill $2
     fi
 
-elif [ "$1" == 'list' ]; then
+elif [ "$1" == 'list' -o "$1" == "l" ]; then
     ps aux | grep -v 'grep' | grep 'ssh -f -L .* -N' | awk '{print $2 " - " $14 " " $15}'
 else
     print_help
