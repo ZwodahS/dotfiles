@@ -7,20 +7,15 @@
 unbind-key -a
 # Set the prefix to ^Q, kind of wanted ^W but it clashes with my vim.
 set -g prefix ^Q
-
 #################### basic stuffs #####################
-# detach tmux
+# These section is important configuration
 bind-key d detach
-# send the prefix, in case of nested tmux
 # WARNING : NESTED TMUX DESTROY YOUR SANITY
 bind-key ^Q send-prefix
-# clock mode, for fun lol
 bind-key c clock-mode
 # force a reload of the config file
 bind-key ^R source-file ~/.tmux.conf
-# command prompt for rarely used commands
 bind-key : command-prompt
-# list all the binded commands
 bind-key ? list-keys
 #################### session stuffs ####################
 # switch tmux session
@@ -67,8 +62,9 @@ bind-key H resize -L 1000
 bind-key -r Right resize-pane -R 2
 bind-key -r l resize-pane -R 2
 bind-key L resize -R 1000
+bind-key + resize -Z    # zoom
 # pane swapping
-bind-key ^k swap-pane -U    
+bind-key ^k swap-pane -U
 bind-key ^j swap-pane -D
 #################### buffer stuffs ####################
 bind-key [ copy-mode
@@ -104,3 +100,4 @@ set -g mode-keys vi
 # mouse select
 setw -g mode-mouse on
 set-option -g mouse-select-pane on
+set-option -g renumber-windows on
