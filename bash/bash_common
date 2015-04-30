@@ -25,3 +25,5 @@ alias t="tail"
 function set_title {
     echo -ne "\033]0;"$*"\007"
 }
+
+alias find_trailing="find . -type f -name '*.py' -exec egrep -l '\ +$' {} \;"
