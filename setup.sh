@@ -54,7 +54,7 @@ if [ $TARGET == '__all__' -o $TARGET == 'vim' ]; then
     git clone git@github.com:zwodahs/vimfiles .vimfiles
     ln -s .vimfiles .vim
     cd .vim
-    ./addlinks.sh
+    ./setup.sh
     cd ~
     
     if [ -e .vimrc ]; then
