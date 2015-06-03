@@ -18,18 +18,16 @@
     au = add -u
     b = branch
     co = checkout
+    cm = commit
     d = diff
     dc = diff --cached
     ds = diff --name-status
     fa = fetch --all
 
-    d1 = diff HEAD~1..HEAD
-    d2 = diff HEAD~2..HEAD
+    dh = diff HEAD~1..HEAD
 
     unstash = stash pop
 
-    tl = tag -l
-    t = tag
     vim = difftool --tool vimdiff
     smu = submodule update
     sm = submodule
