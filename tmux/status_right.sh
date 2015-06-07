@@ -1,2 +1,5 @@
 #!/bin/bash
-echo -n "$(TZ=Singapore date '+%d %b %Y %H:%M')"
+FDR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+source "$FDR/common.sh"
+
+echo -n "$(_format_time) "
