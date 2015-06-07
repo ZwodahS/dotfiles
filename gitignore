@@ -2,3 +2,5 @@
 *.swp
 *.pyc
 .gitbranches
+venv
+venv3
