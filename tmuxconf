@@ -108,4 +108,5 @@ set-option -g renumber-windows on
 set-window-option -g status-left "#(~/.dotfiles/tmux/status_left.sh)"
 set-window-option -g status-right "#(~/.dotfiles/tmux/status_right.sh)"
 set-window-option -g status-left-length 30
+set-window-option -g status-right-length 100
 set-window-option -g status-interval 60
