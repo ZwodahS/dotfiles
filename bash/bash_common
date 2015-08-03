@@ -27,3 +27,4 @@ function set_title {
 }
 
 alias find_trailing="find . -type f -name '*.py' -exec egrep -l '\ +$' {} \;"
+bind 'set bind-tty-special-chars off'

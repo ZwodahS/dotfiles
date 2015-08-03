@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 TARGET='__all__'
 
 if [ "$1" == '' ]; then
@@ -24,12 +24,12 @@ if [ $TARGET == '__all__' -o $TARGET == 'bash' ]; then
         rm -f .tmux.conf
     fi
     ln -s .dotfiles/tmuxconf .tmux.conf
-    
+
     if [ -e .gitconfig ]; then
         rm -f .gitconfig
     fi
     ln -s .dotfiles/gitconfig .gitconfig
-    
+
     if [ -e .bash_profile ]; then
         rm -f .bash_profile
     fi
@@ -44,6 +44,7 @@ if [ $TARGET == '__all__' -o $TARGET == 'bash' ]; then
         rm -f .ackrc
     fi
     ln -s .dotfiles/ackrc .ackrc
+    ln -s .dotfiles/inputrc .inputrc
 fi
 
 if [ $TARGET == '__all__' -o $TARGET == 'vim' ]; then
@@ -56,7 +57,7 @@ if [ $TARGET == '__all__' -o $TARGET == 'vim' ]; then
     cd .vim
     ./setup.sh
     cd ~
-    
+
     if [ -e .vimrc ]; then
         rm -rf .vimrc
     fi

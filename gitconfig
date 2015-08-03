@@ -14,6 +14,7 @@
     lllll = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all -n50
     s = status
     ss = status -s
+    su = status -uno
     a = add
     au = add -u
     b = branch
