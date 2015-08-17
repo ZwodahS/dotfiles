@@ -9,6 +9,7 @@ bashdir=~/.dotfiles/bash
 # comment/uncomment when necessary
 modules=()
 modules+=('bash_common')
+modules+=('bash_util_functions')
 modules+=('linux')
 #modules+=('unix')
 modules+=('path')

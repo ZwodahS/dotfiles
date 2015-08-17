@@ -1,0 +1,3 @@
+function randomstring() {
+    echo $(date | md5sum | cut -d ' ' -f 1);
+}
