@@ -35,13 +35,19 @@ _pyenv ()
 
     if [ "$ENV" == "2" ]; then
         DIR="venv"
+        ODIR="venv3"
         PYRUNTIME="python"
     else
         DIR="venv3"
+        ODIR="venv"
         PYRUNTIME="python3"
     fi
     if [ ! -e "$DIR" ]; then
-        virtualenv -p $PYRUNTIME $DIR
+        if [ -e "$ODIR" -a -z "$1" ]; then
+            DIR=$ODIR
+        else
+            virtualenv -p $PYRUNTIME $DIR
+        fi
     fi
 
     _load_pyenv $DIR
