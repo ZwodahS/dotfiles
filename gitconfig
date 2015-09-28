@@ -15,8 +15,7 @@
     s = status
     ss = status -s
     su = status -uno
-    a = add
-    au = add -u
+    a = add -u
     b = branch
     co = checkout
     cm = commit
@@ -41,3 +40,5 @@
     autocrlf = false
     excludesfile = ~/.gitignore
     editor = /usr/bin/vim
+[github]
+	user = ZwodahS

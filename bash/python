@@ -1,6 +1,6 @@
+#!/usr/env bash
 
-_pyenv ()
-{
+_load_pyenv() {
     if [ -z "$1" ]; then
         if [ -e "venv" ]; then
             DIR='venv'
@@ -15,6 +15,36 @@ _pyenv ()
     fi
 
     source $DIR/bin/activate
+}
+
+_pyenv ()
+{
+    if [ "$1" == "-d" ]; then
+        return _force_pyenv $*
+    fi
+    ENV=$1
+
+    if [ -z "$1" ]; then
+        ENV='3'
+    elif [ "$ENV" == "3" -o "$ENV" == "2" ]; then
+        ENV=$ENV
+    else
+        echo "Unknown Environment (valid values are '2' or '3')"
+        return 1
+    fi
+
+    if [ "$ENV" == "2" ]; then
+        DIR="venv"
+        PYRUNTIME="python"
+    else
+        DIR="venv3"
+        PYRUNTIME="python3"
+    fi
+    if [ ! -e "$DIR" ]; then
+        virtualenv -p $PYRUNTIME $DIR
+    fi
+
+    _load_pyenv $DIR
 }
 
 alias pyenv='_pyenv'
