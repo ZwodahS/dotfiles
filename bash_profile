@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 
 # this is a template for bash_profile. Do not do sym link to it. Instead, copy it
 
@@ -21,6 +21,7 @@ modules+=('git_auto')
 modules+=('python')
 modules+=('tmux')
 modules+=('history')
+modules+=('golang')
 for f in ${modules[@]}
 do
     if [ -e $bashdir/$f ]
