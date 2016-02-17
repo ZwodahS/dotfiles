@@ -1,6 +1,5 @@
 alias ll='ls -lh --color'
 alias l='ls -lh --color'
-alias lg='ls -lh --color; git status'
 alias ack='ack-grep'
 
 # http://superuser.com/questions/124845/can-you-disable-the-ctrl-s-xoff-keystroke-in-putty
