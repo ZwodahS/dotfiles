@@ -1,0 +1,13 @@
+#!/bin/bash
+if git rev-parse --git-dir >/dev/null 2>&1; then
+    if [ -e .gitignore ]; then
+        if [ -z "$(cat .gitignore | grep $1)" ]; then
+            echo "$1" >> .gitignore
+            echo "$1 added to .ignore"
+        fi
+    else
+        echo "$1" >> .gitignore
+        echo "$1 added to .ignore"
+    fi
+fi
+
