@@ -73,3 +73,11 @@ if [ $TARGET == '__all__' -o $TARGET == 'bin' ]; then
     ln -s ~/.dotfiles/bin/* .
     cd ~
 fi
+
+if [ $TARGET == '__all__' -o $TARGET == 'jpio' ]; then
+    mkdir -p ~/.repo
+    pushd ~/.repo
+    git clone git@github.com:zwodahs/jpio jpio
+    cd ~/bin
+    ln -s ~/.repo/jpio/jpio.py jpio
+fi
