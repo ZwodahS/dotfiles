@@ -1,0 +1,13 @@
+#!/bin/bash
+IFS=""
+while read LINE; do
+    for SEARCH in $*; do
+        LINE=$(echo $LINE | grep $SEARCH)
+        if [ -z "$LINE" ]; then
+            break
+        fi
+    done
+    if [ -n "$LINE" ]; then
+        echo $LINE
+    fi
+done
