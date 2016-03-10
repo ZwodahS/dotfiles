@@ -5,16 +5,19 @@
 # unbind all keys
 # If i am not using, don't even have them in the first place.
 unbind-key -a
-# Set the prefix to ^Q, kind of wanted ^W but it clashes with my vim.
+# Set the prefix to ^Q
 set -g prefix ^Q
+#### keep track of what keys i have used
+# dhjklnoprtwxz [] <up> <down> <left> <right>
+# WT
+# ^ + hljmqrw
 #################### basic stuffs #####################
 # These section is important configuration
 bind-key d detach
 # WARNING : NESTED TMUX DESTROY YOUR SANITY
-bind-key ^Q send-prefix
-bind-key c clock-mode
+bind-key ^q send-prefix
 # force a reload of the config file
-bind-key ^R source-file ~/.tmux.conf
+bind-key ^r source-file ~/.tmux.conf
 bind-key : command-prompt
 bind-key ? list-keys
 #################### session stuffs ####################
@@ -50,20 +53,16 @@ bind-key _ command-prompt "resize-pane -y %%"           # resize height
 bind-key v split-window -h -c '#{pane_current_path}'    # vertical split
 bind-key s split-window -v -c '#{pane_current_path}'    # horizontal split
 # pane resizing, by factor of 2, 1 is too slow, 3 is too fast.
-bind-key -r Up resize-pane -U 2
 bind-key -r k resize-pane -U 2
-bind-key K resize-pane -U 1000
-bind-key -r Down resize-pane -D 2
 bind-key -r j resize-pane -D 2
-bind-key J resize-pane -D 1000
-bind-key -r Left resize-pane -L 2
 bind-key -r h resize-pane -L 2
-bind-key H resize -L 1000
-bind-key -r Right resize-pane -R 2
 bind-key -r l resize-pane -R 2
-bind-key L resize -R 1000
 bind-key + resize -Z    # zoom
 bind-key = resize -Z    # zoom
+bind-key -r Up select-pane -U
+bind-key -r Down select-pane -D
+bind-key -r Left select-pane -L
+bind-key -r Right select-pane -R
 # pane swapping
 bind-key ^k swap-pane -U
 bind-key ^j swap-pane -D
