@@ -90,9 +90,9 @@ get_host ()
 
 get_git ()
 {
-    echo '[\[$(parse_git_user)$(branch_color)\]$(parse_git_branch)\[${C_CLEAR}\]]'
+    echo '[$(branch_color)\]$(parse_git_branch)\[${C_CLEAR}\]]'
 }
 
-PS1="$(bound)[${C_CYAN}\!${C_CLEAR}]$(get_working_dir)$(get_host)$(get_git)$(get_time)$(bound)\n:- "
+PS1="$(bound)$(get_working_dir)$(get_host)$(get_git)$(bound)\n$C_RED>$C_CLEAR "
 
 alias g=git
