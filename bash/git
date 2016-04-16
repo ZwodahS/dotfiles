@@ -93,6 +93,6 @@ get_git ()
     echo '[$(branch_color)\]$(parse_git_branch)\[${C_CLEAR}\]]'
 }
 
-PS1="$(bound)$(get_working_dir)$(get_host)$(get_git)$(bound)\n$C_RED>$C_CLEAR "
+PS1="$(bound)$(get_working_dir)$(get_host)$(get_git)$(bound)\n> "
 
 alias g=git
