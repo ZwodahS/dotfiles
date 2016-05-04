@@ -1,2 +1,4 @@
 alias ll='ls -Glh'
 alias wget="curl -O"
+
+alias nv="nvim"
