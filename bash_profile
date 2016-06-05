@@ -22,6 +22,7 @@ modules+=('python')
 modules+=('tmux')
 modules+=('history')
 modules+=('golang')
+modules+=('javascript')
 for f in ${modules[@]}
 do
     if [ -e $bashdir/$f ]
