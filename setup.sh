@@ -1,6 +1,8 @@
 #!/bin/bash
 TARGET='__all__'
 
+BIN_FOLDER=".bin"
+
 if [ "$1" == '' ]; then
     TARGET='__all__'
 elif [ "$1" == 'vim' ]; then
@@ -64,14 +66,6 @@ if [ $TARGET == '__all__' -o $TARGET == 'vim' ]; then
     ln -s .vim/vimrc .vimrc
 fi
 
-if [ $TARGET == '__all__' -o $TARGET == 'bin' ]; then
-    cd ~
-    if [ ! -e bin ]; then
-        mkdir bin
-    fi
-    cd bin
-    ln -s ~/.dotfiles/bin/* .
-    cd ~
+if [ ${TARGET} == '__all__' -o ${TARGET} == 'jpio' ]; then
+    sudo pip3 install jpio
 fi
-
-sudo pip3 install git+https://github.com/zwodahs/jpio
