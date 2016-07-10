@@ -47,6 +47,7 @@ if [ $TARGET == '__all__' -o $TARGET == 'bash' ]; then
     fi
     ln -s .dotfiles/ackrc .ackrc
     ln -s .dotfiles/inputrc .inputrc
+    ln -s .dotfiles/agignore .agignore
 fi
 
 if [ $TARGET == '__all__' -o $TARGET == 'vim' ]; then
