@@ -94,5 +94,6 @@ get_git ()
 }
 
 PS1="$(bound)$(get_working_dir)$(get_host)$(get_git)$(bound)\n> "
+PS2="> "
 
 alias g=git

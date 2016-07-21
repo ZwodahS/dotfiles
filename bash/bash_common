@@ -7,7 +7,11 @@ alias lll="ls | sed 's/ /\n/'"
 alias cd..="cd .."
 alias cd...="cd ../.."
 alias cd....="cd ../../.."
-alias v="vim"
+if [ -n "$(which nvim)" ]; then
+    alias v="nvim"
+else
+    alias v="vim"
+fi
 alias mk="make"
 alias rm='echo "do not use rm , use trash-put(trash) instead "; false'
 # make file
@@ -20,13 +24,9 @@ alias ......="cd ../../../../.."
 alias .......="cd ../../../../../.."
 alias showhost="cat ~/.ssh/config | grep 'Host '"
 alias bashreload=". ~/.bash_profile"
-alias gp="grep"
-alias t="tail"
 function set_title {
     echo -ne "\033]0;"$*"\007"
 }
 
 alias find_trailing="find . -type f -name '*.py' -exec egrep -l '\ +$' {} \;"
 bind 'set bind-tty-special-chars off'
-alias gg="git status -uno; git l; ll"
-alias nv="nvim"
