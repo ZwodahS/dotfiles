@@ -23,14 +23,12 @@
     llh = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -n20 HEAD
     lllh = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -n30 HEAD
     llllh = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -n40 HEAD
-    lllllh = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -n50 HEAD
+    lllllh = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -n50 HEADt
     s = status
     ss = status -s
     su = status -uno
     a = add -u
     b = branch
-    co = checkout
-    cm = commit
     d = diff
     dc = diff --cached
     ds = diff --name-status
@@ -43,7 +41,6 @@
     vim = difftool --tool vimdiff
     smu = submodule update
     sm = submodule
-    m = merge
 
     sb = syncbranch
     move = syncbranch move
