@@ -1,0 +1,34 @@
+#!/bin/bash
+gohere() {
+    if [ -z "$GOPATH" ]; then
+        GOPATH="$(pwd)"
+    else
+        GOPATH="$(pwd):$GOPATH"
+    fi
+    export GOPATH=$GOPATH
+    echo "Current GOPATHS: $GOPATH"
+}
+
+gowhere() {
+    echo "Current GOPATHS: $GOPATH"
+}
+
+addgopath() {
+    if [ -z "$1" ]; then
+        exit
+    fi
+    P=$1
+    if [ -e "~/.gopath" ]; then
+        if [ -z "$(cat ~/.gopath | grep ${P})" ]; then
+            echo "${P}" >> ~/.gopath
+        fi
+    else
+        echo "${P}" >> ~/.gopath
+    fi
+}
+
+GOPATH=""
+if [ -n "$(ls -A ~/.gopath)" ]; then
+    GOPATH=$(cat ~/.gopath | tr '\n' ':' | sed 's/:$/\n/')
+fi
+export GOPATH=${GOPATH}

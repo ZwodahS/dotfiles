@@ -11,6 +11,8 @@ elif [ "$1" == 'bash' ]; then
     TARGET='bash'
 elif [ "$1" == 'bin' ]; then
     TARGET='bin'
+elif [ "$1" == 'go' ]; then
+    TARGET='go'
 else
     echo "Invalid target"
     exit 1
@@ -69,4 +71,22 @@ fi
 
 if [ ${TARGET} == '__all__' -o ${TARGET} == 'jpio' ]; then
     sudo pip3 install jpio
+fi
+
+if [ ${TARGET} == '__all__' -o ${TARGET} == 'go' ]; then
+    if [ -e "~/.go" ]; then
+        mkdir ${HOME}/.go
+        pushd ${HOME}/.go
+        for FDR in bin pkg src; do
+            mkdir $FDR
+        done
+        popd
+    fi
+    if [ -e "~/.gopath" ]; then
+        if [ -z "$(cat ~/.gopath | grep ${HOME}/.go)" ]; then
+            echo "${HOME}/.go" >> ~/.gopath
+        fi
+    else
+        echo "${HOME}/.go" >> ~/.gopath
+    fi
 fi
