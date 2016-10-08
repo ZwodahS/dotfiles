@@ -1,1 +1,4 @@
-PATH=~/bin:~/.dotfiles/bin:$PATH
+if [ -e "~/bin" ]; then
+    PATH=~/bin:$PATH
+fi
+PATH=~/.dotfiles/bin:$PATH

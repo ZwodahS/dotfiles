@@ -1,7 +1,7 @@
 #!/bin/bash
 TARGET='__all__'
 
-BIN_FOLDER=".bin"
+BIN_FOLDER="bin"
 
 if [ "$1" == '' ]; then
     TARGET='__all__'

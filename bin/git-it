@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ ! -e ".git" ]; then
+    git init
+    PATH=~/bin:$PATH
+    git commit -m "Initial Empty Commit" --allow-empty
+else
+    echo ".git already exist"
+fi
