@@ -1,19 +1,6 @@
 #!/bin/bash
-gohere() {
-    if [ -z "$GOPATH" ]; then
-        GOPATH="$(pwd)"
-    else
-        GOPATH="$(pwd):$GOPATH"
-    fi
-    export GOPATH=$GOPATH
-    echo "Current GOPATHS: $GOPATH"
-}
 
-gowhere() {
-    echo "Current GOPATHS: $GOPATH"
-}
-
-addgopath() {
+goenv_add() {
     if [ -z "$1" ]; then
         exit
     fi
@@ -24,6 +11,44 @@ addgopath() {
         fi
     else
         echo "${P}" >> ~/.gopath
+    fi
+}
+
+goenv_here() {
+    TARGET=$1
+    if [ -z "${TARGET}" ]; then
+        TARGET=$(pwd)
+    fi
+    if [ -z "$GOPATH" ]; then
+        GOPATH="${TARGET}"
+    else
+        GOPATH="${TARGET}:$GOPATH"
+    fi
+    export GOPATH=$GOPATH
+    goenv_where
+}
+
+goenv_where() {
+    P="$(echo $GOPATH | sed 's/:/\n/g' )"
+    echo "Current GOPATHS:"
+    echo "$P"
+}
+
+goenv() {
+    if [ -z "$1" ]; then
+        echo "Usage:"
+        echo "goenv here [path]         add a temporary gopath"
+        echo "goenv where               print out gopath"
+        echo "goenv add [path]          add a permanent gopath"
+        return
+    fi
+    COMMAND=$1
+    if [ "${COMMAND}" == "here" ]; then
+        goenv_here $2
+    elif [ "${COMMAND}" == "where" ]; then
+        goenv_where
+    elif [ "${COMMAND}" == "add" ]; then
+        goenv_add $2
     fi
 }
 
