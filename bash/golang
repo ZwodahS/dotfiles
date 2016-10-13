@@ -19,6 +19,7 @@ goenv_here() {
     if [ -z "${TARGET}" ]; then
         TARGET=$(pwd)
     fi
+    TARGET=$(readlink -f $TARGET)
     if [ -z "$GOPATH" ]; then
         GOPATH="${TARGET}"
     else
@@ -35,11 +36,12 @@ goenv_where() {
 }
 
 goenv() {
-    if [ -z "$1" ]; then
+    if [ "$1" == "help" ]; then
         echo "Usage:"
         echo "goenv here [path]         add a temporary gopath"
         echo "goenv where               print out gopath"
         echo "goenv add [path]          add a permanent gopath"
+        echo "goenv                     create goenv and add it to temporary gopath"
         return
     fi
     COMMAND=$1
@@ -49,6 +51,11 @@ goenv() {
         goenv_where
     elif [ "${COMMAND}" == "add" ]; then
         goenv_add $2
+    else
+        if [ ! -e "genv" ]; then
+            mkdir genv
+        fi
+        goenv_here "genv"
     fi
 }
 
