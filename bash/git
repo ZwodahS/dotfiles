@@ -5,6 +5,7 @@ C_BLUE=$(tput setaf 4)
 C_MAGENTA=$(tput setaf 5)
 C_CYAN=$(tput setaf 6)
 C_WHITE=$(tput setaf 7)
+C_GRAY=$(tput setaf 8)
 C_CLEAR=$(tput sgr0)
 
 parse_git_user ()
@@ -75,7 +76,7 @@ get_time ()
 
 bound ()
 {
-    echo "${C_RED}#${C_CLEAR}"
+    echo "${C_GRAY}#####${C_CLEAR}"
 }
 
 get_working_dir ()

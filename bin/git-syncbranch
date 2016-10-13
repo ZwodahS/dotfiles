@@ -2,7 +2,7 @@
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 sync() {
     if [ "$CURRENT_BRANCH" == "$1" ]; then
-        git co -B $1 $2
+        git checkout -B $1 $2
     else
         git b -f $1 $2
     fi
