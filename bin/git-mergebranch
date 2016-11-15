@@ -1,0 +1,12 @@
+#!/bin/bash
+
+TARGET=$1
+SOURCE=$2
+
+if [ -z "${SOURCE}" -o -z "${TARGET}" ]; then
+    echo "$0 <merge_target> <base> "
+    echo "i.e. $0 fix/feature master"
+    exit 1
+fi
+
+git checkout ${SOURCE} && git merge $TARGET --no-ff -m "merge(${TARGET}->${SOURCE})"
