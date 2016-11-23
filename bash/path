@@ -1,4 +1,7 @@
-if [ -e "~/bin" ]; then
-    PATH=~/bin:$PATH
+if [ -e "${HOME}/bin" ]; then
+    PATH="${HOME}/bin:$PATH"
 fi
-PATH=~/.dotfiles/bin:$PATH
+PATH="${HOME}/.dotfiles/bin:$PATH"
+if [ -e "${HOME}/.go/bin" ]; then
+    PATH="${HOME}/.go/bin:$PATH"
+fi

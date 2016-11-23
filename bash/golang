@@ -29,21 +29,31 @@ goenv_here() {
     goenv_where
 }
 
+goenv_reset() {
+    GOPATH=""
+    if [ -n "$(ls -A ~/.gopath)" ]; then
+        GOPATH=$(cat ~/.gopath | tr '\n' ':' | sed 's/:$/\n/')
+    fi
+    export GOPATH=${GOPATH}
+}
+
+
 goenv_where() {
     P="$(echo $GOPATH | sed 's/:/\n/g' )"
     echo "Current GOPATHS:"
     echo "$P"
 }
 
+goenv_help() {
+    echo "Usage:"
+    echo "goenv here [path]         add a temporary gopath"
+    echo "goenv where               print out gopath"
+    echo "goenv add [path]          add a permanent gopath"
+    echo "goenv reset               remove all temporary gopath"
+    echo "goenv                     create goenv and add it to temporary gopath"
+}
+
 goenv() {
-    if [ "$1" == "help" ]; then
-        echo "Usage:"
-        echo "goenv here [path]         add a temporary gopath"
-        echo "goenv where               print out gopath"
-        echo "goenv add [path]          add a permanent gopath"
-        echo "goenv                     create goenv and add it to temporary gopath"
-        return
-    fi
     COMMAND=$1
     if [ "${COMMAND}" == "here" ]; then
         goenv_here $2
@@ -51,16 +61,11 @@ goenv() {
         goenv_where
     elif [ "${COMMAND}" == "add" ]; then
         goenv_add $2
+    elif [ "${COMMAND}" == "reset" ]; then
+        goenv_reset $2
     else
-        if [ ! -e "genv" ]; then
-            mkdir genv
-        fi
-        goenv_here "genv"
+        goenv_help
     fi
 }
 
-GOPATH=""
-if [ -n "$(ls -A ~/.gopath)" ]; then
-    GOPATH=$(cat ~/.gopath | tr '\n' ':' | sed 's/:$/\n/')
-fi
-export GOPATH=${GOPATH}
+goenv_reset
