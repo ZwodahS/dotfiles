@@ -43,7 +43,6 @@ bind-key 0 command-prompt "select-window -t :%%"
 # window swapping
 bind-key ^h swap-window -t -1
 bind-key ^l swap-window -t +1
-bind-key ^m command-prompt "swap-window -t %%"
 #################### pane stuffs ####################
 bind-key x confirm-before kill-pane                     # kill
 bind-key w display-panes                                # selection
@@ -66,6 +65,8 @@ bind-key -r Right select-pane -R
 # pane swapping
 bind-key ^k swap-pane -U
 bind-key ^j swap-pane -D
+# pane move to channel
+bind-key ^m command-prompt "join-pane -t %%"
 #################### buffer stuffs ####################
 bind-key [ copy-mode
 bind-key ] command-prompt "save-buffer -b 0 %%"
@@ -100,8 +101,8 @@ set-option -g status-position bottom
 # vi keys in copy mode
 set -g mode-keys vi
 # mouse select
-setw -g mode-mouse on
-set-option -g mouse-select-pane on
+setw -g mode-mouse off
+set-option -g mouse-select-pane off
 set-option -g renumber-windows on
 
 set-window-option -g status-left "#(~/.dotfiles/tmux/status_left.sh)"
