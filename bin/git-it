@@ -1,8 +1,20 @@
 #!/bin/bash
-if [ ! -e ".git" ]; then
-    git init
-    PATH=~/bin:$PATH
-    git commit -m "Initial Empty Commit" --allow-empty
-else
-    echo ".git already exist"
+CURRENT_GIT="$(git rev-parse --git-dir)"
+FORCE=0
+if [ "$1" == "-f" -o "$1" == "--force" ]; then
+    FORCE=1
 fi
+
+if [ -e ".git" ]; then
+    echo ".git already exist in the current directory"
+    exit 1
+elif [ -n "$CURRENT_GIT" ]; then
+    if [ "$FORCE" != "1" ]; then
+        echo "existing .git exist in parent directory, run with --force to proceed"
+        exit 1
+    fi
+fi
+
+git init
+PATH=~/bin:$PATH
+git commit -m "Initial Empty Commit" --allow-empty
