@@ -1,4 +1,5 @@
 #!/bin/bash
+source $(dirname $BASH_SOURCE)/bash_util_functions
 
 goenv_add() {
     if [ -z "$1" ]; then
@@ -19,11 +20,11 @@ goenv_here() {
     if [ -z "${TARGET}" ]; then
         TARGET=$(pwd)
     fi
-    TARGET=$(readlink -f $TARGET)
+    TARGET=$(followlink $TARGET)
     if [ -z "$GOPATH" ]; then
         GOPATH="${TARGET}"
     else
-        GOPATH="${TARGET}:$GOPATH"
+        GOPATH="${TARGET}"':'"$GOPATH"
     fi
     export GOPATH=$GOPATH
     goenv_where
