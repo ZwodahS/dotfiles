@@ -49,5 +49,6 @@
     autocrlf = false
     excludesfile = ~/.gitignore
     editor = /usr/bin/vim
+	pager = less -x1,5
 [github]
 	user = ZwodahS
