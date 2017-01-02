@@ -101,8 +101,8 @@ set-option -g status-position bottom
 # vi keys in copy mode
 set -g mode-keys vi
 # mouse select
-setw -g mode-mouse off
-set-option -g mouse-select-pane off
+# setw -g mode-mouse on
+# set-option -g mouse-select-pane on
 set-option -g renumber-windows on
 
 set-window-option -g status-left "#(~/.dotfiles/tmux/status_left.sh)"
