@@ -98,3 +98,9 @@ PS1="$(bound)$(get_working_dir)$(get_host)$(get_git)$(bound)\n> "
 PS2="> "
 
 alias g=git
+
+if [ -n "$(which nvim)" ]; then
+    export GIT_EDITOR="nvim"
+else
+    export GIT_EDITOR="vim"
+fi
