@@ -1,3 +1,4 @@
+# set up ssh agents and various function for ssh
 SSH_ENV=$HOME/.ssh/environment
 SSH_HOME=$HOME/.ssh/
 

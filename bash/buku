@@ -1,0 +1,6 @@
+# only set if buku exist
+if [ -n "$(which buku)" ]; then
+    alias b='buku'
+    alias bw='buku --write -a'
+fi
+

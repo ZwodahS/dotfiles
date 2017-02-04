@@ -10,12 +10,9 @@ bashdir=~/.dotfiles/bash
 modules=()
 modules+=('bash_common')
 modules+=('bash_util_functions')
-modules+=('linux')
-#modules+=('unix')
 modules+=('path')
 modules+=('git_auto')
-#modules+=('ruby')
-#modules+=('apparix')
+modules+=('apparix')
 #modules+=('ssh')
 modules+=('python')
 modules+=('tmux')
@@ -23,6 +20,7 @@ modules+=('history')
 modules+=('golang')
 modules+=('javascript')
 modules+=('git')
+modules+=('buku')
 for f in ${modules[@]}
 do
     if [ -e $bashdir/$f ]

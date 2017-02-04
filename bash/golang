@@ -1,4 +1,4 @@
-#!/bin/bash
+
 source $(dirname $BASH_SOURCE)/bash_util_functions
 
 goenv_add() {

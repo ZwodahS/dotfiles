@@ -1,7 +1,12 @@
+# if folder present, add path
 if [ -e "${HOME}/bin" ]; then
     PATH="${HOME}/bin:$PATH"
 fi
+
+# update with bin from dotfiles.
 PATH="${HOME}/.dotfiles/bin:$PATH"
+
+# add more path from golang projects
 if [ -e "${HOME}/.go/bin" ]; then
     PATH="${HOME}/.go/bin:$PATH"
 fi

@@ -1,3 +1,4 @@
+# various alias related to tmux
 alias tma='tmux attach -t'
 alias tmn='tmux new -s'
 alias tms='tmux switch -t'
@@ -10,5 +11,3 @@ if [[ -S "$SSH_AUTH_SOCK" && ! -h "$SSH_AUTH_SOCK" ]]; then
 fi
 
 export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock;
-
-alias tmsplit="tmux splitw -v -p 80; tmux splitw -v -p 20"
