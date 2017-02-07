@@ -1,4 +1,4 @@
-# only set if buku exist
+# BUKU
 if [ -n "$(which buku)" ]; then
     export BUKU_ROOT="$(dirname $(readlink $(which buku)))"
     BUKU_AUTOCOMPL="${BUKU_ROOT}/auto-completion/bash/buku-completion.bash"

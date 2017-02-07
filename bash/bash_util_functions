@@ -33,3 +33,7 @@ function set_title {
     echo -ne "\033]0;"$*"\007"
 }
 
+alias showhost="cat ~/.ssh/config | grep 'Host '"
+alias bashreload=". ~/.bash_profile"
+alias find_trailing="find . -type f -name '*.py' -exec egrep -l '\ +$' {} \;"
+alias sync_time="sudo ntpdate pool.ntp.org"

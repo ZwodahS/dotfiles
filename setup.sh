@@ -24,49 +24,36 @@ if [ $TARGET == '__all__' -o $TARGET == 'bash' ]; then
     read HOSTNAME
     echo $HOSTNAME > ~/.dotfiles/hostname
     cd ~
-    if [ -e .tmux.conf ]; then
-        rm -f .tmux.conf
-    fi
-    ln -s .dotfiles/tmuxconf .tmux.conf
-
-    if [ -e .gitconfig ]; then
-        rm -f .gitconfig
-    fi
-    ln -s .dotfiles/gitconfig .gitconfig
-
-    if [ -e .bash_profile ]; then
-        rm -f .bash_profile
-    fi
+    FILES=(".tmux.conf" ".gitconfig" ".bash_profile" ".gitignore" ".ackrc" ".inputrc" ".agignore" ".pythonrc")
+    for F in ${FILES[@]}; do
+        if [ -e "$F" ]; then
+            rm -rf $F;
+        fi
+    done
     cp .dotfiles/bash_profile .bash_profile
-
-    if [ -e .gitignore ]; then
-        rm -f .gitignore
-    fi
+    ln -s .dotfiles/tmuxconf .tmux.conf
+    ln -s .dotfiles/gitconfig .gitconfig
     ln -s .dotfiles/gitignore .gitignore
-
-    if [ -e .ackrc ]; then
-        rm -f .ackrc
-    fi
     ln -s .dotfiles/ackrc .ackrc
     ln -s .dotfiles/inputrc .inputrc
     ln -s .dotfiles/agignore .agignore
+    ln -s .dotfiles/pythonrc.py .pythonrc
 fi
 
 if [ $TARGET == '__all__' -o $TARGET == 'vim' ]; then
     cd ~
-    if [ -e .vimfiles ]; then
-        rm -rf .vimfiles
-    fi
-    git clone git@github.com:zwodahs/vimfiles .vimfiles
-    ln -s .vimfiles .vim
-    cd .vim
-    ./setup.sh
-    cd ~
+    if [ ! -e .vimfiles ]; then
+        git clone git@github.com:zwodahs/vimfiles .vimfiles
+        ln -s .vimfiles .vim
+        cd .vim
+        ./setup.sh
+        cd ~
 
-    if [ -e .vimrc ]; then
-        rm -rf .vimrc
+        if [ -e .vimrc ]; then
+            rm -rf .vimrc
+        fi
+        ln -s .vim/vimrc .vimrc
     fi
-    ln -s .vim/vimrc .vimrc
 fi
 
 if [ ${TARGET} == '__all__' -o ${TARGET} == 'jpio' ]; then
@@ -74,7 +61,7 @@ if [ ${TARGET} == '__all__' -o ${TARGET} == 'jpio' ]; then
 fi
 
 if [ ${TARGET} == '__all__' -o ${TARGET} == 'go' ]; then
-    if [ -e "~/.go" ]; then
+    if [ ! -e "~/.go" ]; then
         mkdir ${HOME}/.go
         pushd ${HOME}/.go
         for FDR in bin pkg src; do

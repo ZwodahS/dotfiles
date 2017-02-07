@@ -6,23 +6,23 @@
 bashdir=~/.dotfiles/bash
 
 # source the different bash
-# comment/uncomment when necessary
 modules=()
 modules+=('bash_common')
 modules+=('bash_util_functions')
 modules+=('path')
 modules+=('apparix')
-#modules+=('ssh')
 modules+=('python')
 modules+=('tmux')
 modules+=('history')
 modules+=('golang')
-modules+=('javascript')
 modules+=('git')
 modules+=('git_auto')
 modules+=('tig')
+modules+=('ps')
 modules+=('buku')
 
+# only for local
+#modules+=('ssh')
 for f in ${modules[@]}
 do
     if [ -e $bashdir/$f ]

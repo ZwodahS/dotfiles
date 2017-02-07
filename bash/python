@@ -54,24 +54,5 @@ _pyenv ()
 }
 
 alias pyenv='_pyenv'
-
-_venv34 ()
-{
-    pyvenv-3.4 --without-pip $1 && source $1/bin/activate && curl https://bootstrap.pypa.io/get-pip.py | python && deactivate && source $1/bin/activate
-}
-
-alias virtualenv3='_venv34'
 export PYTHONSTARTUP="$HOME/.pythonrc"
 
-_pyinterpreter ()
-{
-    if [ -e 'venv3' ]; then
-        ipython3
-    elif [ -e 'venv' ]; then
-        ipython
-    else
-        ipython3
-    fi
-}
-
-alias pyinterp='_pyinterpreter'

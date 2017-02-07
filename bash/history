@@ -1,3 +1,4 @@
+# A few utility function to search and clean up history
 alias hclean="cat ~/.bash_history | sed 's/ *$//g' | sort | uniq > ~/.bash_history.clean && mv ~/.bash_history.clean ~/.bash_history"
 alias ht="history | tail -n15"
 alias htt="history | tail -n30"
@@ -21,7 +22,8 @@ function history ()
     _bash_history_sync
     builtin history "$@"
 }
-function _h ()
+
+function h ()
 {
     params=$@
     if [ -z "$params" ]; then
@@ -37,7 +39,6 @@ function _h ()
         \rm $TMP_HISTORY
     fi
 }
-alias h="_h"
 
 function _hrmindex()
 {
