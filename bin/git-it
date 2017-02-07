@@ -1,5 +1,5 @@
 #!/bin/bash
-CURRENT_GIT="$(git rev-parse --git-dir)"
+CURRENT_GIT="$(git rev-parse --git-dir 2> /dev/null)"
 FORCE=0
 if [ "$1" == "-f" -o "$1" == "--force" ]; then
     FORCE=1

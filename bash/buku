@@ -1,6 +1,13 @@
 # only set if buku exist
 if [ -n "$(which buku)" ]; then
+    export BUKU_ROOT="$(dirname $(readlink $(which buku)))"
+    BUKU_AUTOCOMPL="${BUKU_ROOT}/auto-completion/bash/buku-completion.bash"
     alias b='buku'
-    alias bw='buku --write -a'
+    # source the autocomplete if exist
+    if [ -e "${BUKU_AUTOCOMPL}" ]; then
+        source ${BUKU_AUTOCOMPL}
+    fi
+    unset BUKU_AUTOCOMPL
+    # autocomplete to my alias
+    complete -F _buku b
 fi
-
