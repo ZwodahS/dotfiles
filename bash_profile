@@ -11,7 +11,6 @@ modules=()
 modules+=('bash_common')
 modules+=('bash_util_functions')
 modules+=('path')
-modules+=('git_auto')
 modules+=('apparix')
 #modules+=('ssh')
 modules+=('python')
@@ -20,7 +19,10 @@ modules+=('history')
 modules+=('golang')
 modules+=('javascript')
 modules+=('git')
+modules+=('git_auto')
+modules+=('tig')
 modules+=('buku')
+
 for f in ${modules[@]}
 do
     if [ -e $bashdir/$f ]
@@ -28,5 +30,3 @@ do
         source $bashdir/$f
     fi
 done
-__git_complete git _git
-__git_complete g _git

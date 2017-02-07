@@ -1,0 +1,4 @@
+# only alias t to tig if it exist
+if [ -n "$(which tig)" ]; then
+    alias t='tig'
+fi
