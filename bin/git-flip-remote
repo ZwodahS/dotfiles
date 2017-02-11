@@ -1,0 +1,29 @@
+#/usr/bin/env bash
+
+if [ -z "$1" ]; then
+    echo 'git flip-remote [url]'
+    exit 1
+fi
+
+FULL_URL=$1
+
+PROTOCOL=$(echo $FULL_URL | sed -E 's#((https?://)|git@)(.*)#\1#')
+
+if [ "$PROTOCOL" == "https://" ]; then
+    DOMAIN=$(echo $FULL_URL | sed -E "s#https?://([^/]+)/([^/]+)/(.*)#\1#")
+    USER=$(echo $FULL_URL | sed -E "s#https?://([^/]+)/([^/]+)/(.*)#\2#")
+    REPO=$(echo $FULL_URL | sed -E "s#https?://([^/]+)/([^/]+)/(.*)#\3#")
+    echo "git@$DOMAIN:$USER/$REPO"
+elif [ "$PROTOCOL" == "git@" ]; then
+    DOMAIN=$(echo $FULL_URL | sed -E "s#git@([^:]+):([^/]+)/(.*)#\1#")
+    USER=$(echo $FULL_URL | sed -E "s#git@([^:]+):([^/]+)/(.*)#\2#")
+    REPO=$(echo $FULL_URL | sed -E "s#git@([^:]+):([^/]+)/(.*)#\3#")
+    if [ -z "$2" ]; then
+        echo "https://$DOMAIN/$USER/$REPO"
+    else
+        echo "$2://$DOMAIN/$USER/$REPO"
+    fi
+else
+    echo "Unknown Protocol"
+    exit 1
+fi
