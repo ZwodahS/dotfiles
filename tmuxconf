@@ -97,6 +97,7 @@ set-window-option -g window-status-attr bold
 set-option -g display-panes-active-colour blue
 set-option -g display-panes-colour colour166
 set-option -g default-terminal "screen-256color"
+set-option -ga terminal-overrides ",*256col*:Tc"
 set-option -g status-position bottom
 # vi keys in copy mode
 set -g mode-keys vi
