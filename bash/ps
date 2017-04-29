@@ -36,7 +36,15 @@ branch_color ()
 }
 get_git ()
 {
-    echo '$(branch_color) ⑂ $(parse_git_branch)  $(tput sgr0)'
+    echo '$(_get_git)'
+}
+_get_git()
+{
+    if git rev-parse --git-dir >/dev/null 2>&1; then
+        echo "$(branch_color) ⑂ $(parse_git_branch)  $(tput sgr0)"
+    else
+        return 0
+    fi
 }
 
 #########################################
