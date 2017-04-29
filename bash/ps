@@ -38,7 +38,7 @@ git_ahead_behind() {
     local behindN="$(echo $stat | grep -o 'behind [[:digit:]]\+' | grep -o '[[:digit:]]\+')"
     [ -n "$aheadN" ] && marks+=" $GIT_NEED_PUSH_SYMBOL$aheadN"
     [ -n "$behindN" ] && marks+=" $GIT_NEED_PULL_SYMBOL$behindN"
-    [ -z "$marks" ] && marks+= " "
+    [ -z "$marks" ] && marks+=" "
     echo -n "${marks}"
 }
 _get_git()
