@@ -1,0 +1,6 @@
+#!/usr/bin/env python3
+
+import sys
+import arrow
+#print(arrow.get(sys.argv[1], "YYYY-MM-DD", tzinfo="+08:00"))
+print(int(arrow.get(sys.argv[1], "YYYY-MM-DD", tzinfo="+08:00").float_timestamp * 1e6))
