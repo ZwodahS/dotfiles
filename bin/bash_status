@@ -61,6 +61,8 @@ check_item 'nvim'
 check_item 'fzf'
 check_item 'apparix'
 check_item 'git'
+check_item 'tig'
+check_item 'jq'
 
 title "Languages"
 check_item 'python2'
@@ -68,6 +70,10 @@ check_item 'python3'
 check_item 'node'
 check_item 'npm'
 check_item 'go' 'version'
+
+title "Server Applications"
+check_item 'dokku'
+check_item 'docker'
 
 echo ""
 echo "$(tput setab 240)                                                         $(tput sgr0)"
