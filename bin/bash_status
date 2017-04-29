@@ -1,0 +1,73 @@
+#!/bin/bash
+
+_CS() {
+    STR=$1
+    FG_COLOR=$2
+    BG_COLOR=$3
+    OUTPUT=""
+    if [ -n "${FG_COLOR}" ]; then
+        OUTPUT+="$(tput setaf ${FG_COLOR})"
+    fi
+    if [ -n "${BG_COLOR}" ]; then
+        OUTPUT+="$(tput setab ${BG_COLOR})"
+    fi
+    OUTPUT+=${STR}
+    OUTPUT+=$(tput sgr0)
+    echo ${OUTPUT}
+}
+
+pad() {
+    STRING=$1
+    LEN=$2
+    PAD=$3
+    if [ -z "${PAD}" ]; then
+        PAD=" "
+    fi
+    echo -n "${STRING}"
+    for ((i=0; i< ($LEN - ${#STRING}); i++)){ echo -n "${PAD}"; }
+}
+
+echo "$(tput setab 240)                                                         $(tput sgr0)"
+
+check_item() {
+    item=$1
+    VERSION_FUNC=$2
+    if [ -z "${VERSION_FUNC}" ]; then
+        VERSION_FUNC="--version"
+    fi
+    if [ -z "$(which ${item})" ]; then
+        echo "$(pad ${item} 15) Installed: "$(_CS 'No' 9)
+    else
+        # sometimes the version prints too much
+        VERSION=$(${item} ${VERSION_FUNC} 2>&1 | head -n 1)
+        echo -n "$(pad ${item} 15) Installed: $(tput setaf 10)Yes$(tput sgr0)"
+        if [ -n "${VERSION}" ]; then
+            echo "  ("$(_CS "${VERSION}" 74)")"
+        else
+            echo ""
+        fi
+    fi
+}
+
+title() {
+    echo ""
+    echo "$(tput setab 240)$(tput setaf 15)    $1    $(tput sgr0)"
+    echo ""
+}
+
+title "Generic Utility"
+check_item 'ag'
+check_item 'nvim'
+check_item 'fzf'
+check_item 'apparix'
+check_item 'git'
+
+title "Languages"
+check_item 'python2'
+check_item 'python3'
+check_item 'node'
+check_item 'npm'
+check_item 'go' 'version'
+
+echo ""
+echo "$(tput setab 240)                                                         $(tput sgr0)"
