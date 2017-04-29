@@ -68,11 +68,11 @@ get_user_host ()
 ################ bound ##################
 bound_left ()
 {
-    echo "$(tput setab 236)  $(tput setab 242)  $(tput setab 248)  $(tput setab 252)$(tput sgr0)"
+    echo "$(tput setab 236) $(tput setab 238) $(tput setab 240) $(tput setab 242) $(tput setab 244) $(tput setab 246) $(tput setab 248) $(tput setab 250) $(tput setab 252) $(tput sgr0)"
 }
 bound_right ()
 {
-    echo "$(tput setab 252)  $(tput setab 248)  $(tput setab 242)  $(tput setab 236)$(tput sgr0)"
+    echo "$(tput setab 252) $(tput setab 250) $(tput setab 248) $(tput setab 246) $(tput setab 244) $(tput setab 242) $(tput setab 240) $(tput setab 238) $(tput setab 236) $(tput sgr0)"
 }
 #########################################
 
