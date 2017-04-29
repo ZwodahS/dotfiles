@@ -1,0 +1,28 @@
+#!/bin/bash
+
+readonly FG_RED=$(tput setaf 1)
+readonly FG_GREEN=$(tput setaf 2)
+readonly FG_YELLOW=$(tput setaf 3)
+readonly FG_BLUE=$(tput setaf 4)
+readonly FG_MAGENTA=$(tput setaf 5)
+readonly FG_CYAN=$(tput setaf 6)
+readonly FG_WHITE=$(tput setaf 7)
+readonly FG_GRAY=$(tput setaf 8)
+readonly FG_CLEAR=$(tput sgr0)
+
+_CS() {
+    STR=$1
+    FG_COLOR=$2
+    BG_COLOR=$3
+    OUTPUT=""
+    if [ -n "${FG_COLOR}" ]; then
+        OUTPUT+="$(tput setaf ${FG_COLOR})"
+    fi
+    if [ -n "${BG_COLOR}" ]; then
+        OUTPUT+="$(tput setab ${BG_COLOR})"
+    fi
+    OUTPUT+=${STR}
+    OUTPUT+=$(tput sgr0)
+    echo ${OUTPUT}
+}
+

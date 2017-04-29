@@ -8,6 +8,7 @@ bashdir=~/.dotfiles/bash
 # source the different bash
 modules=()
 modules+=('bash_common')
+modules+=('bash_color')
 modules+=('bash_util_functions')
 modules+=('path')
 modules+=('apparix')

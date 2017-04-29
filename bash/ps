@@ -1,42 +1,16 @@
+#!/bin/bash
 # PS
-C_RED=$(tput setaf 1)
-C_GREEN=$(tput setaf 2)
-C_YELLOW=$(tput setaf 3)
-C_BLUE=$(tput setaf 4)
-C_MAGENTA=$(tput setaf 5)
-C_CYAN=$(tput setaf 6)
-C_WHITE=$(tput setaf 7)
-C_GRAY=$(tput setaf 8)
-C_CLEAR=$(tput sgr0)
 
-parse_git_user ()
-{
-    if git rev-parse --git-dir >/dev/null 2>&1
-    then
-        USERNAME=$(git config user.name)
-        if [ -z "$USERNAME" ]; then
-            return 0
-        fi
-
-        USER=${C_BLUE}
-        USER+=$USERNAME
-        USER+=${C_CLEAR}
-        USER+="@"
-        echo -e $USER
-    else
-           return 0
-    fi
-}
-
+################# GIT ###################
 parse_git_branch ()
 {
     if git rev-parse --git-dir >/dev/null 2>&1
     then
-        gitver+=$(git branch 2>/dev/null| sed -n '/^\*/s/^\* //p')
+        GB+=$(git branch 2>/dev/null| sed -n '/^\*/s/^\* //p')
     else
         return 0
     fi
-    echo -e $gitver
+    echo -e $GB
 }
 
 branch_color ()
@@ -48,53 +22,59 @@ branch_color ()
         then
             if git diff --cached --quiet 2> /dev/null >&2
             then
-                color="${C_GREEN}"
+                color="$(tput setab 28)$(tput setaf 255)"
             else
-                color=${C_YELLOW}
+                color="$(tput setab 94)$(tput setaf 255)"
             fi
         else
-            color=${C_RED}
+            color="$(tput setab 88)$(tput setaf 255)"
         fi
     else
         return 0
     fi
     echo -ne $color
 }
+get_git ()
+{
+    echo '$(branch_color) ⑂ $(parse_git_branch)  $(tput sgr0)'
+}
 
+#########################################
+
+################# Host ##################
 get_hostname ()
 {
     if [ -e ~/.dotfiles/hostname ]; then
-        echo ${C_RED}"@"${C_YELLOW}$(cat ~/.dotfiles/hostname)${C_CLEAR}
+        echo "$(tput setab 25)$(tput setaf 15) ¤$(cat ~/.dotfiles/hostname)¤ $(tput sgr0)"
     else
         echo ""
     fi
 }
-
-get_time ()
+get_user_host ()
 {
-    echo "[${C_BLUE}\D{%d-%b-%G@%H:%M:%S}${C_CLEAR}]"
+    echo "$(tput setab 243)$(tput setaf 15) \u $(tput sgr0)$(get_hostname)"
 }
 
-bound ()
-{
-    echo "${C_GRAY}#####${C_CLEAR}"
-}
+#########################################
 
+################ bound ##################
+bound_left ()
+{
+    echo "$(tput setab 236)  $(tput setab 242)  $(tput setab 248)  $(tput setab 252)$(tput sgr0)"
+}
+bound_right ()
+{
+    echo "$(tput setab 252)  $(tput setab 248)  $(tput setab 242)  $(tput setab 236)$(tput sgr0)"
+}
+#########################################
+
+############### working dir #############
 get_working_dir ()
 {
-    echo '[\[${C_BLUE}\]\w\[${C_CLEAR}\]]'
+    echo "$(tput setab 90)$(tput setaf 15) \w $(tput sgr0)"
 }
+#########################################
 
-get_host ()
-{
-    echo '[${C_GREEN}\u${C_CLEAR}$(get_hostname)]'
-}
-
-get_git ()
-{
-    echo '[$(branch_color)\]$(parse_git_branch)\[${C_CLEAR}\]]'
-}
-
-PS1="$(bound) $(get_working_dir)$(get_host)$(get_git) $(bound)\n> "
+PS1="$(bound_left)$(get_working_dir)$(get_user_host)$(get_git)$(bound_right)\n> "
 PS2="> "
 
