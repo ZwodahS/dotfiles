@@ -4,33 +4,22 @@
 ################# GIT ###################
 parse_git_branch ()
 {
-    if git rev-parse --git-dir >/dev/null 2>&1
-    then
-        GB+=$(git branch 2>/dev/null| sed -n '/^\*/s/^\* //p')
-    else
-        return 0
-    fi
-    echo -e $GB
+    echo -e $(git branch 2>/dev/null| sed -n '/^\*/s/^\* //p')
 }
 
 branch_color ()
 {
-    if git rev-parse --git-dir >/dev/null 2>&1
+    color=""
+    if git diff --quiet 2>/dev/null >&2
     then
-        color=""
-        if git diff --quiet 2>/dev/null >&2
+        if git diff --cached --quiet 2> /dev/null >&2
         then
-            if git diff --cached --quiet 2> /dev/null >&2
-            then
-                color="$(tput setab 28)$(tput setaf 255)"
-            else
-                color="$(tput setab 94)$(tput setaf 255)"
-            fi
+            color="$(tput setab 28)$(tput setaf 255)"
         else
-            color="$(tput setab 88)$(tput setaf 255)"
+            color="$(tput setab 94)$(tput setaf 255)"
         fi
     else
-        return 0
+        color="$(tput setab 88)$(tput setaf 255)"
     fi
     echo -ne $color
 }
@@ -38,10 +27,24 @@ get_git ()
 {
     echo '$(_get_git)'
 }
+
+# stole from https://github.com/riobard/bash-powerline/blob/master/bash-powerline.sh
+readonly GIT_NEED_PUSH_SYMBOL='⇡'
+readonly GIT_NEED_PULL_SYMBOL='⇣'
+git_ahead_behind() {
+    local marks=""
+    local stat="$(git status --porcelain --branch | grep '^##' | grep -o '\[.\+\]$')"
+    local aheadN="$(echo $stat | grep -o 'ahead [[:digit:]]\+' | grep -o '[[:digit:]]\+')"
+    local behindN="$(echo $stat | grep -o 'behind [[:digit:]]\+' | grep -o '[[:digit:]]\+')"
+    [ -n "$aheadN" ] && marks+=" $GIT_NEED_PUSH_SYMBOL$aheadN"
+    [ -n "$behindN" ] && marks+=" $GIT_NEED_PULL_SYMBOL$behindN"
+    [ -z "$marks" ] && marks+= " "
+    echo -n "${marks}"
+}
 _get_git()
 {
     if git rev-parse --git-dir >/dev/null 2>&1; then
-        echo "$(branch_color) ⑂ $(parse_git_branch)  $(tput sgr0)"
+        echo "$(branch_color) ⑂ $(parse_git_branch)$(git_ahead_behind) $(tput sgr0)"
     else
         return 0
     fi
@@ -53,7 +56,7 @@ _get_git()
 get_hostname ()
 {
     if [ -e ~/.dotfiles/hostname ]; then
-        echo "$(tput setab 25)$(tput setaf 15) ¤$(cat ~/.dotfiles/hostname)¤ $(tput sgr0)"
+        echo "$(tput setab 25)$(tput setaf 15) $(cat ~/.dotfiles/hostname) $(tput sgr0)"
     else
         echo ""
     fi
