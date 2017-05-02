@@ -82,10 +82,22 @@ bound_right ()
 ############### working dir #############
 get_working_dir ()
 {
-    echo "$(tput setab 90)$(tput setaf 15) \w $(tput sgr0)"
+    echo "$(tput setab 241)$(tput setaf 15) \w\$(get_virtualenv) $(tput sgr0)"
+}
+
+get_virtualenv () {
+    if [ -n "${VIRTUAL_ENV}" ]; then
+        if [ -z "$(echo $(pwd) | grep $(dirname $VIRTUAL_ENV))" ]; then
+            echo " ($(tput setaf 160)$(basename $(echo $VIRTUAL_ENV))$(tput setaf 15))"
+        else
+            echo " ($(basename $(echo $VIRTUAL_ENV)))"
+        fi
+    else
+        echo ""
+    fi
 }
 #########################################
-
+export VIRTUAL_ENV_DISABLE_PROMPT=1
 PS1="$(bound_left)$(get_working_dir)$(get_user_host)$(get_git)$(bound_right)\n> "
 PS2="> "
 
