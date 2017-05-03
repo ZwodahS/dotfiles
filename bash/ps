@@ -71,11 +71,13 @@ get_user_host ()
 ################ bound ##################
 bound_left ()
 {
-    echo "$(tput setab 236) $(tput setab 238) $(tput setab 240) $(tput setab 242) $(tput setab 244) $(tput setab 246) $(tput setab 248) $(tput setab 250) $(tput setab 252) $(tput sgr0)"
+    # echo "$(tput setab 236) $(tput setab 238) $(tput setab 240) $(tput setab 242) $(tput setab 244) $(tput setab 246) $(tput setab 248) $(tput setab 250) $(tput setab 252) $(tput sgr0)"
+    echo " "
 }
 bound_right ()
 {
-    echo "$(tput setab 252) $(tput setab 250) $(tput setab 248) $(tput setab 246) $(tput setab 244) $(tput setab 242) $(tput setab 240) $(tput setab 238) $(tput setab 236) $(tput sgr0)"
+    # echo "$(tput setab 252) $(tput setab 250) $(tput setab 248) $(tput setab 246) $(tput setab 244) $(tput setab 242) $(tput setab 240) $(tput setab 238) $(tput setab 236) $(tput sgr0)"
+    echo " "
 }
 #########################################
 
@@ -88,7 +90,7 @@ get_working_dir ()
 get_virtualenv () {
     if [ -n "${VIRTUAL_ENV}" ]; then
         if [ -z "$(echo $(pwd) | grep $(dirname $VIRTUAL_ENV))" ]; then
-            echo " ($(tput setaf 160)$(basename $(echo $VIRTUAL_ENV))$(tput setaf 15))"
+            echo " $(tput setab 160)($(basename $(echo $VIRTUAL_ENV)))$(tput setab 241)"
         else
             echo " ($(basename $(echo $VIRTUAL_ENV)))"
         fi
