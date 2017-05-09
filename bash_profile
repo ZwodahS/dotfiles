@@ -21,6 +21,7 @@ modules+=('git_auto')
 modules+=('tig')
 modules+=('ps')
 modules+=('buku')
+modules+=('fzf')
 
 # only for local
 #modules+=('ssh')
