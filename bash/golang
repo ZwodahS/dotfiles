@@ -32,7 +32,7 @@ goenv_here() {
 
 goenv_reset() {
     GOPATH=""
-    if [ -n "$(ls -A ~/.gopath)" ]; then
+    if [ -n "$(ls -A ~/.gopath 2>/dev/null)" ]; then
         GOPATH=$(cat ~/.gopath | tr '\n' ':' | sed 's/:$//')
     fi
     export GOPATH=${GOPATH}
@@ -69,4 +69,4 @@ goenv() {
     fi
 }
 
-goenv_reset
+[ -n "$(which go)" ] && goenv_reset
