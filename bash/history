@@ -7,6 +7,7 @@ alias httt="history | tail -n45"
 HISTCONTROL=ignorespace:ignoredups
 # export HISTCONTROL=erasedups #:ignorespace
 # shopt -s histappend
+shopt -s histverify
 # http://unix.stackexchange.com/questions/1288/preserve-bash-history-in-multiple-terminal-windows
 HISTSIZE=100000
 function _bash_history_sync()
@@ -64,3 +65,5 @@ function _hrmgrep()
         mv $TMP_HISTORY.2 ~/.bash_history
     fi
 }
+
+PROMPT_COMMAND=_bash_history_sync

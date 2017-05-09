@@ -7,7 +7,7 @@ if [ "$1" == '' ]; then
 fi
 
 DIR=`dirname $1`
-if [ ! -e $DIR ]; then 
+if [ ! -e $DIR ]; then
     mkdir -p $DIR
 fi
 
