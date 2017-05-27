@@ -1,15 +1,9 @@
+#!/bin/bash
 # GIT
 if [ -n "$(which git)" ]; then
-    alias g=git
-
     if [ -n "$(which nvim)" ]; then
         export GIT_EDITOR="nvim"
     else
         export GIT_EDITOR="vim"
     fi
-fi
-
-# TIG
-if [ -n "$(which tig)" ]; then
-    alias t='tig'
 fi

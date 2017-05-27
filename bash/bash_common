@@ -20,6 +20,7 @@ stty -ixon
 
 bind 'set bind-tty-special-chars off'
 
+#################### Vim and Nvim ####################
 # set 'v' alias based on if nvim is present
 if [ -n "$(which nvim)" ]; then
     alias v="nvim"
@@ -28,6 +29,38 @@ else
     alias v="vim"
     export EDITOR='vim'
 fi
+#################### Vim and Nvim ####################
+
+#################### GIT and TIG ####################
+# set g and t as git and tig if present
+if [ -n "$(which git)" ]; then
+    alias g="git"
+else
+    alias g="echo git is not installed"
+fi
+
+if [ -n "$(which tig)" ]; then
+    alias t='tig'
+else
+    alias t="echo tig is not installed"
+fi
+#################### GIT and TIG ####################
+
+#################### Python ####################
+if [ -n "$(which python)" ]; then
+    alias p="python"
+else
+    alias p="echo python is not installed"
+fi
+#################### Python ####################
+
+#################### Apparix ####################
+if [ -n "$(which apparix)" ]; then
+    alias a="apparix"
+else
+    alias a="echo apparix is not installed"
+fi
+#################### Apparix ####################
 
 # disable rm
 alias rm='echo "do not use rm, use trash-put(trash) instead "; false'
@@ -39,4 +72,5 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
 alias .......="cd ../../../../../.."
+
 

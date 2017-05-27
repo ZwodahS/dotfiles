@@ -1,3 +1,4 @@
+#!/bin/bash
 # only run this if apparix is present
 if [ -n "$(which apparix)" ]; then
     function to () {
@@ -49,5 +50,4 @@ if [ -n "$(which apparix)" ]; then
     # command to register the above to expand when the 'to' command's args are
     # being expanded
     complete -F _apparix_aliases to
-    alias a="apparix"
 fi
