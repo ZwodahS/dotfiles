@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+[ -z "$(git status -suno)" ] && echo "No changes" && exit 1
+
+MESSAGE="Temp: $(date)"
+[ -n "$1" ] && MESSAGE="$1"
+git add -u
+git commit -m "${MESSAGE}"
+
