@@ -3,4 +3,6 @@
 *.pyc
 .gitbranches
 venv
+venv2
 venv3
+.session
