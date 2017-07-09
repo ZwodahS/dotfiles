@@ -27,6 +27,7 @@
     s = status
     ss = status -s
     su = status -uno
+    sh = show --color --pretty=format:%b
     a = add -u
     b = branch
     d = diff
