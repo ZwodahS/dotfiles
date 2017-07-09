@@ -3,7 +3,6 @@
 COMMAND=$1
 
 has_existing_walk() {
-    echo hi >> temp.t
     EXISTING_WALK=$(git branch | grep refs/walk)
     if [ -z "${EXISTING_WALK}" -o -f .git/.current_walk ]; then
         return 1
@@ -12,7 +11,10 @@ has_existing_walk() {
 }
 
 if [ -z "${COMMAND}" ]; then
-    echo "git walk start to start walking"
+    echo "git walk start [hash/ref]"
+    echo "git walk next"
+    echo "git walk prev"
+    echo "git walk end"
     exit 1
 fi
 
@@ -34,7 +36,7 @@ if [ "${COMMAND}" == "start" ]; then
     # let's see if we can walk this path
     ANCESTORS=$(git rev-list --ancestry-path "${HASH}"..HEAD)
     if [ -z "${ANCESTORS}" ]; then
-        echo "Unable to find ancestry path to ${REF}, perhaps not ancestry"
+        echo "Unable to find ancestry path to ${REF}, perhaps not ancestor?"
         exit 1
     fi
 
