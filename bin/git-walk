@@ -1,0 +1,68 @@
+#!/bin/bash
+
+COMMAND=$1
+
+has_existing_walk() {
+    echo hi >> temp.t
+    EXISTING_WALK=$(git branch | grep refs/walk)
+    if [ -z "${EXISTING_WALK}" -o -f .git/.current_walk ]; then
+        return 1
+    fi
+    return 0
+}
+
+if [ -z "${COMMAND}" ]; then
+    echo "git walk start to start walking"
+    exit 1
+fi
+
+if [ "${COMMAND}" == "start" ]; then
+    has_existing_walk && echo "Already walking, either continue or end it" && exit 1
+
+    REF=$2
+    if [ -z "${REF}" ]; then
+        echo "Hash/ref required to start working"
+        echo "git walk start [HASH]"
+        exit 1
+    fi
+    HASH=$(git rev-parse $REF 2> /dev/null)
+    if [ "$?" != 0 ]; then
+        echo "Unable to find ref ${REF}"
+        exit 1
+    fi
+
+    # let's see if we can walk this path
+    ANCESTORS=$(git rev-list --ancestry-path "${HASH}"..HEAD)
+    if [ -z "${ANCESTORS}" ]; then
+        echo "Unable to find ancestry path to ${REF}, perhaps not ancestry"
+        exit 1
+    fi
+
+    git branch refs/walk/end
+    git branch refs/walk/start ${HASH}
+    git rev-parse --abbrev-ref HEAD > .git/.current_walk
+    git checkout -B refs/walk/current $(git rev-list --ancestry-path ${HASH}..HEAD | tail -n 1)
+elif [ "${COMMAND}" == "end" ]; then
+    if [ ! -f ".git/.current_walk" ]; then
+        echo "There is no existing walk"
+        exit 1
+    fi
+    git checkout $(cat .git/.current_walk) --
+    git branch -D refs/walk/start refs/walk/current refs/walk/end
+    rm .git/.current_walk
+elif [ "${COMMAND}" == "next" ]; then
+    if [ "$(git rev-parse $HEAD)" == "$(git rev-parse refs/walk/end)" ]; then
+        echo "Aready at the end, git walk end to end the walk"
+        exit 1
+    fi
+    git checkout -B refs/walk/current $(git rev-list --ancestry-path HEAD..refs/walk/end | tail -n 1)
+    git diff HEAD~1..HEAD
+elif [ "${COMMAND}" == "prev" ]; then
+    if [ "$(git rev-parse $HEAD)" == "$(git rev-parse refs/walk/start)" ]; then
+        echo "Aready at the start of the walk"
+        exit 1
+    fi
+    git checkout -B refs/walk/current $(git rev-list --ancestry-path refs/walk/start..HEAD | head -n 1)
+    git diff HEAD~1..HEAD
+fi
+
