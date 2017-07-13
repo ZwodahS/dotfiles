@@ -1,0 +1,20 @@
+#!/usr/bin/env python
+import sys
+mode = sys.argv[1]
+length = int(sys.argv[2])
+tabs = int(sys.argv[3])
+tab = " "*tabs
+words = sys.argv[4:]
+words = " ".join(words)
+
+if mode == "h":
+    print("".join([tab, "#"*length]))
+start = int(length/2 - len(words)/2)
+text = "".join(["#"*(start - 1), " ", words, " ", "#"*(start-1)])
+while len(text) < length:
+    text += "#"
+text = "".join([tab, text])
+print(text)
+
+if mode == "h":
+    print("".join([tab, "#"*length]))
