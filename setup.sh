@@ -30,7 +30,7 @@ if [ $TARGET == '__all__' -o $TARGET == 'bash' ]; then
             rm -rf $F;
         fi
     done
-    cp .dotfiles/bash_profile .bash_profile
+    ln -s .dotfiles/bash_profile .bash_profile
     ln -s .dotfiles/tmuxconf .tmux.conf
     ln -s .dotfiles/gitconfig .gitconfig
     ln -s .dotfiles/gitignore .gitignore
