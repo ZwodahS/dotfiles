@@ -22,6 +22,7 @@ modules+=('tig')
 modules+=('ps')
 modules+=('buku')
 modules+=('fzf')
+modules+=('docker')
 
 # only for local
 #modules+=('ssh')
