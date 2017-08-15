@@ -2,5 +2,5 @@
 # only alias if docker exists
 if [ -n "$(which docker)" ]; then
     alias d="docker"
-    alias dps="docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
+    alias dps="docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'"
 fi
