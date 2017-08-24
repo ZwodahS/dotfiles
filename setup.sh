@@ -56,10 +56,6 @@ if [ $TARGET == '__all__' -o $TARGET == 'vim' ]; then
     fi
 fi
 
-if [ ${TARGET} == '__all__' -o ${TARGET} == 'jpio' ]; then
-    sudo pip3 install jpio
-fi
-
 if [ ${TARGET} == '__all__' -o ${TARGET} == 'go' ]; then
     if [ ! -e "~/.go" ]; then
         mkdir ${HOME}/.go
