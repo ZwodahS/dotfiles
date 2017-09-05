@@ -115,3 +115,17 @@ display-message "tmux configuration reloaded"
 
 set-option -g pane-active-border-fg green
 set-option -g pane-active-border-bg black
+
+#### tmux plugins
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+
+## Resurrect
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @resurrect-save 'S'
+set -g @resurrect-restore 'R'
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+# Load only if tpm exist.
+# The other code is not important since it only set variables
+if-shell "if [ -e ~/.tmux/plugins/tpm/tpm ]; then true; else false; fi" "run '~/.tmux/plugins/tpm/tpm'; display-message 'plugins loaded'"
