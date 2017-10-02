@@ -36,6 +36,7 @@
     fa = fetch --all
 
     dh = diff HEAD~1..HEAD
+    pf = pull --ff-only
 
     unstash = stash pop
 
