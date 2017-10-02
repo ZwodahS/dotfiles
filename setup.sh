@@ -1,5 +1,6 @@
 #!/bin/bash
 TARGET='__all__'
+DOTFILES_PATH=$(pwd)
 
 BIN_FOLDER="bin"
 
@@ -22,7 +23,7 @@ fi
 if [ $TARGET == '__all__' -o $TARGET == 'bash' ]; then
     echo -n "Enter hostname name:"
     read HOSTNAME
-    echo $HOSTNAME > ~/.dotfiles/hostname
+    echo $HOSTNAME > ${DOTFILES_PATH}/hostname
     cd ~
     FILES=(".tmux.conf" ".gitconfig" ".bash_profile" ".gitignore" ".ackrc" ".inputrc" ".agignore" ".pythonrc")
     for F in ${FILES[@]}; do
@@ -30,22 +31,32 @@ if [ $TARGET == '__all__' -o $TARGET == 'bash' ]; then
             rm -rf $F;
         fi
     done
-    ln -s .dotfiles/bash_profile .bash_profile
-    ln -s .dotfiles/tmuxconf .tmux.conf
-    ln -s .dotfiles/gitconfig .gitconfig
-    ln -s .dotfiles/gitignore .gitignore
-    ln -s .dotfiles/ackrc .ackrc
-    ln -s .dotfiles/inputrc .inputrc
-    ln -s .dotfiles/agignore .agignore
-    ln -s .dotfiles/pythonrc.py .pythonrc
+    ln -s ${DOTFILES_PATH}/bash_profile .bash_profile
+    ln -s ${DOTFILES_PATH}/tmuxconf .tmux.conf
+    ln -s ${DOTFILES_PATH}/gitconfig .gitconfig
+    ln -s ${DOTFILES_PATH}/gitignore .gitignore
+    ln -s ${DOTFILES_PATH}/ackrc .ackrc
+    ln -s ${DOTFILES_PATH}/inputrc .inputrc
+    ln -s ${DOTFILES_PATH}/agignore .agignore
+    ln -s ${DOTFILES_PATH}/pythonrc.py .pythonrc
 fi
 
+cd ${DOTFILES_PATH}
 if [ $TARGET == '__all__' -o $TARGET == 'vim' ]; then
-    cd ~
-    if [ ! -e .vimfiles ]; then
-        git clone git@github.com:zwodahs/vimfiles .vimfiles
-        ln -s .vimfiles .vim
-        cd .vim
+    if [ ! -e vimfiles ]; then
+        git clone git@github.com:zwodahs/vimfiles ${DOTFILES_PATH}/vimfiles
+        if [ -e .vim ]; then
+            echo ".vim exist, backup to .vim.old"
+            if [ ! -e .vim.old ]; then
+                mv .vim .vim.old
+            else
+                echo ".vim.old exist"
+                exit 1
+            fi
+        fi
+	cd ~
+        ln -s ${DOTFILES_PATH}/vimfiles .vim
+        cd ${DOTFILES_PATH}/vimfiles
         ./setup.sh
         cd ~
 

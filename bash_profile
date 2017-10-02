@@ -3,7 +3,7 @@
 # this is a template for bash_profile. Do not do sym link to it. Instead, copy it
 
 # define the bash directory for the different bash script
-bashdir=~/.dotfiles/bash
+bashdir=~/.zdotfiles/bash
 
 # source the different bash
 modules=()
