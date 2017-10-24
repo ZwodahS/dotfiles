@@ -66,6 +66,7 @@ check_item 'apparix'
 check_item 'git'
 check_item 'tig'
 check_item 'jq' '-' 'package manager'
+check_item 'tmux' '-V'
 
 title "Languages"
 check_item 'python2'
