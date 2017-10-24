@@ -75,7 +75,7 @@ check_item 'npm'
 check_item 'go' 'version'
 
 title "Server Applications"
-check_item 'dokku'
+check_item 'dokku' 'version'
 check_item 'docker'
 
 echo ""
