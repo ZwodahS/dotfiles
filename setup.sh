@@ -39,6 +39,9 @@ if [ $TARGET == '__all__' -o $TARGET == 'bash' ]; then
     ln -s ${DOTFILES_PATH}/inputrc .inputrc
     ln -s ${DOTFILES_PATH}/agignore .agignore
     ln -s ${DOTFILES_PATH}/pythonrc.py .pythonrc
+    if [ -e ".bashrc" ]; then
+        mv .bashrc .bashrc.old
+    fi
 fi
 
 cd ${DOTFILES_PATH}
