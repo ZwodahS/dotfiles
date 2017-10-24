@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# this is a template for bash_profile. Do not do sym link to it. Instead, copy it
-
 # define the bash directory for the different bash script
 DOTFILES=~/.dotfiles
 bashdir=${DOTFILES}/bash
