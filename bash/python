@@ -54,5 +54,5 @@ _pyenv ()
 }
 
 alias pyenv='_pyenv'
-export PYTHONSTARTUP="$HOME/.pythonrc"
+# export PYTHONSTARTUP="$HOME/.pythonrc"
 

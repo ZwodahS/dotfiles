@@ -1,0 +1,32 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+    echo "git visibility show - move .git.hidden to .git"
+    echo "git visibility hide - move .git to .git.hidden"
+    exit 1
+fi
+
+COMMAND="$1"
+
+if [ "${COMMAND}" == "show" ]; then
+    if [ -e .git ]; then
+        echo "$(tput setab 88)$(tput setaf 255)""WARNING"$(tput sgr0)": attempting to replace .git failed"
+        exit 1
+    elif [ ! -e .git.hidden ]; then
+        echo ".git.hidden not found"
+        exit 1
+    fi
+    mv .git.hidden .git
+elif [ "${COMMAND}" == "hide" ]; then
+    if [ -e .git.hidden ]; then
+        echo "$(tput setab 88)$(tput setaf 255)""WARNING"$(tput sgr0)": attempting to replace .git.hidden failed"
+        exit 1
+    elif [ ! -e .git ]; then
+        echo "Not a git repo"
+        exit 1
+    fi
+    mv .git .git.hidden
+else
+    echo Unknown command "${COMMAND}"
+    exit 1
+fi

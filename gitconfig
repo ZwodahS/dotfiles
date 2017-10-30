@@ -34,6 +34,7 @@
     dc = diff --cached
     ds = diff --name-status
     fa = fetch --all
+    v = visibility
 
     dh = diff HEAD~1..HEAD
     pf = pull --ff-only
