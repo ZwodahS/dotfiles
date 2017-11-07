@@ -67,3 +67,6 @@ function _hrmgrep()
 }
 
 PROMPT_COMMAND=_bash_history_sync
+
+# when using !<num> expand history, put the command to the CLI instead of running direct.
+shopt -s histverify
