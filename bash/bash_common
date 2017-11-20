@@ -24,9 +24,11 @@ bind 'set bind-tty-special-chars off'
 # set 'v' alias based on if nvim is present
 if [ -n "$(which nvim)" ]; then
     alias v="nvim"
+    alias vr="nvim -R"
     export EDITOR='nvim'
 else
     alias v="vim"
+    alias vr="vim -R"
     export EDITOR='vim'
 fi
 #################### Vim and Nvim ####################
