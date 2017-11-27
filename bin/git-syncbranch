@@ -2,9 +2,10 @@
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 sync() {
     if [ "$CURRENT_BRANCH" == "$1" ]; then
-        git checkout -B $1 $2
+        git checkout --no-track -B $1 $2
     else
-        git b -f $1 $2
+        echo "Moving branch $1 to $2"
+        git b -vf --no-track $1 $2
     fi
 }
 
@@ -20,12 +21,14 @@ move_branch() {
 }
 
 if [ "$1" == "sync" ]; then
-    if [ -e ".gitbranches" ]; then
-        while read line
-        do
-            sync $line
-        done < ".gitbranches"
-    fi
+    git branch --format='%(refname:short) %(upstream:short)' | while read LINE; do
+        BRANCH=$(echo $LINE | cut -d ' ' -f 1)
+        TRACKING=$(echo $LINE | cut -d ' ' -f 2)
+        if [ -z "${TRACKING}" ]; then
+            continue
+        fi
+        sync $BRANCH $TRACKING
+    done
 elif [ "$1" == "move" ]; then
     shift
     for B in $*; do

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+if [ "${CURRENT_BRANCH}" == "HEAD" ]; then
+    exit 0
+fi
+
+if [ -z "$1" ]; then
+    echo "git cow [ref]"
+    exit 1
+fi
+
+git checkout -B ${CURRENT_BRANCH} $1
