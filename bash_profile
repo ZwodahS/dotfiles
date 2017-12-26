@@ -25,7 +25,9 @@ modules+=('fzf')
 modules+=('docker')
 
 # only for local
-#modules+=('ssh')
+if [ -e "${DOTFILES}/local" ]; then
+    modules+=('ssh')
+fi
 for f in ${modules[@]}
 do
     if [ -e $bashdir/$f ]
