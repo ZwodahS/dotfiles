@@ -122,9 +122,10 @@ set-option -g pane-active-border-bg black
 set -g @plugin 'tmux-plugins/tpm'
 
 ## Resurrect
-set -g @plugin 'tmux-plugins/tmux-resurrect'
-set -g @resurrect-save 'S'
-set -g @resurrect-restore 'R'
+# resurrect abit too destructive for my liking.
+# set -g @plugin 'tmux-plugins/tmux-resurrect'
+# set -g @resurrect-save 'S'
+# set -g @resurrect-restore 'R'
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 # Load only if tpm exist.
