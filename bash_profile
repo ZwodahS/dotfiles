@@ -27,6 +27,7 @@ modules+=('docker')
 # only for local
 if [ -e "${DOTFILES}/local" ]; then
     modules+=('ssh')
+    source "${DOTFILES}/local"
 fi
 for f in ${modules[@]}
 do
