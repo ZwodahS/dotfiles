@@ -5,6 +5,11 @@ DOTFILES=~/.dotfiles
 export DOTFILES
 bashdir=${DOTFILES}/bash
 
+# only for local
+if [ -e "${DOTFILES}/local" ]; then
+    source "${DOTFILES}/local"
+fi
+
 # source the different bash
 modules=()
 modules+=('bash_common')
@@ -24,11 +29,6 @@ modules+=('ps')
 modules+=('buku')
 modules+=('fzf')
 modules+=('docker')
-
-# only for local
-if [ -e "${DOTFILES}/local" ]; then
-    source "${DOTFILES}/local"
-fi
 for f in ${modules[@]}
 do
     if [ -e $bashdir/$f ]
