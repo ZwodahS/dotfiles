@@ -2,6 +2,7 @@
 
 # define the bash directory for the different bash script
 DOTFILES=~/.dotfiles
+export DOTFILES
 bashdir=${DOTFILES}/bash
 
 # source the different bash
