@@ -2,7 +2,7 @@
 
 [ -z "$(git status -suno)" ] && echo "No changes" && exit 1
 
-MESSAGE="$(date)"
+MESSAGE="$(TZ=Singapore date)"
 [ -n "$1" ] && MESSAGE="$*"
 
 COMMIT_MESSAGE="temp(save): ${MESSAGE}"
