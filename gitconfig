@@ -22,6 +22,8 @@
     su = status -uno
     sh = show --color --pretty=format:%b
 
+    uncommit = reset HEAD~1
+
     a = add -u
 
     b = branch
@@ -30,6 +32,9 @@
     d = diff
     dc = diff --cached
     ds = diff --name-status
+
+    # custom plug-in
+    f = feature
 
     fa = fetch --all
     fap = fetch --all --prune

@@ -1,0 +1,57 @@
+#!/bin/bash
+
+readonly FG_RED=$(tput setaf 1)
+readonly FG_GREEN=$(tput setaf 2)
+readonly FG_YELLOW=$(tput setaf 3)
+readonly FG_BLUE=$(tput setaf 4)
+readonly FG_MAGENTA=$(tput setaf 5)
+readonly FG_CYAN=$(tput setaf 6)
+readonly FG_WHITE=$(tput setaf 7)
+readonly FG_GRAY=$(tput setaf 8)
+readonly FG_CLEAR=$(tput sgr0)
+
+readonly COLOR_RED=1
+readonly COLOR_GREEN=2
+readonly COLOR_YELLOW=3
+readonly COLOR_BLUE=4
+readonly COLOR_MAGENTA=5
+readonly COLOR_CYAN=6
+readonly COLOR_WHITE=7
+readonly COLOR_GRAY=8
+
+function _color() {
+    STR=$1
+    FG_COLOR=$2
+    BG_COLOR=$3
+    OUTPUT=""
+    if [ -n "${FG_COLOR}" ]; then
+        OUTPUT+="$(tput setaf ${FG_COLOR})"
+    fi
+    if [ -n "${BG_COLOR}" ]; then
+        OUTPUT+="$(tput setab ${BG_COLOR})"
+    fi
+    OUTPUT+=${STR}
+    OUTPUT+=$(tput sgr0)
+    echo ${OUTPUT}
+}
+
+#!/bin/bash
+CURRENT_GIT="$(git rev-parse --git-dir 2> /dev/null)"
+
+function _has_git() {
+    if [ -n "${CURRENT_GIT}" ]; then
+        return 0
+    fi
+    return 1
+}
+
+function _get_current_branch() {
+    echo $(git rev-parse --abbrev-ref HEAD)
+}
+
+function _has_branch() {
+    if [ -n "$(git branch | grep $1)" ]; then
+        return 0
+    fi
+    return 1
+}

@@ -1,0 +1,105 @@
+#!/bin/bash
+
+# TODO:
+#
+# git feature should show if branches have diverge
+#
+# - command to delete all branch except system and current branches
+# - git f rebase <branch> -> git rebase <feature>/<branch>
+
+BRANCH_OFF="branch-off"
+
+source "git-common"
+
+COMMAND=$1
+shift
+
+CURRENT_BRANCH=$(_get_current_branch)
+CURRENT_FEATURE=$(echo ${CURRENT_BRANCH} | rev | cut -d '/' -f 2- | rev)
+CURRENT_SUB_BRANCH=$(git branch | rev | cut -d '/' -f 1 | rev)
+
+function _print_help() {
+    HELP="__ALL__"
+    [ -n "$1" ] && HELP=$1
+    if [ "${HELP}" == '__ALL__' -o "${HELP}" == 'new' ]; then
+        echo "git feature new <feature_name>"
+    fi
+    if [ "${HELP}" == '__ALL__' -o "${HELP}" == 'checkout' ]; then
+        echo "git feature checkout <sub_branch>"
+    fi
+}
+
+function _branches() {
+    echo $(git branch | grep ${CURRENT_FEATURE} | sed 's/*//g' | sed 's/ //g')
+}
+
+if [ -z "${COMMAND}" ]; then
+    echo ""
+    echo "  Currently in Feature $(_color "${CURRENT_FEATURE}" ${COLOR_GREEN})"
+    echo ""
+    echo "  Available Sub-Branches :"
+    echo "  * $(_color ${CURRENT_BRANCH} ${COLOR_GREEN}) $(_color $(git rev-parse ${CURRENT_BRANCH}) ${COLOR_RED})"
+
+    git branch | grep ${CURRENT_FEATURE} | while read LINE; do
+        if [ -n "$(echo ${LINE} | grep ${CURRENT_BRANCH})" ]; then
+            continue
+        elif [ -n "$(echo ${LINE} | grep "${BRANCH_OFF}")" ]; then
+            HASH=$(_color $(git rev-parse ${LINE}) ${COLOR_RED})
+            echo "  > $(_color ${LINE} ${COLOR_YELLOW}) ${HASH}"
+        else
+            HASH=$(_color $(git rev-parse ${LINE}) ${COLOR_RED})
+            echo "  - ${LINE} ${HASH}"
+        fi
+    done
+
+    echo ""
+    exit 0
+
+elif [ "${COMMAND}" == "new" ]; then
+    NEW_FEATURE=$1
+    shift
+    if [ -z "${NEW_FEATURE}" ]; then
+        _print_help "new"
+        exit 1
+    fi
+    git branch ${NEW_FEATURE}/${BRANCH_OFF}
+
+elif [ "${COMMAND}" == "checkout" -o "${COMMAND}" == "co" ]; then
+    NEW_SUB_BRANCH=$1
+    shift
+    if [ -z "${NEW_SUB_BRANCH}" -o -z "${CURRENT_FEATURE}" ]; then
+        _print_help "checkout"
+        exit 1
+    fi
+    BRANCH=${CURRENT_FEATURE}/${NEW_SUB_BRANCH}
+    git checkout -B ${BRANCH} $*
+elif [ "${COMMAND}" == "to" ]; then
+    NEW_SUB_BRANCH=$1
+    shift
+    if [ -z "${NEW_SUB_BRANCH}" -o -z "${CURRENT_FEATURE}" ]; then
+        _print_help "to"
+        exit 1
+    fi
+    BRANCH=${CURRENT_FEATURE}/${NEW_SUB_BRANCH}
+    git checkout ${BRANCH} $*
+elif [ "${COMMAND}" == "branch" -o "${COMMAND}" == "b" ]; then
+    _branches
+elif [ "${COMMAND}" == "xargs" -o "${COMMAND}" == "x" ]; then
+    _branches | xargs git $*
+elif [ "${COMMAND}" == "rebase" ]; then
+    SUB_BRANCH=$1
+    shift
+    if [ -z "${SUB_BRANCH}" -o -z "${CURRENT_FEATURE}" ]; then
+        _print_help "rebase"
+        exit 1
+    fi
+    git rebase ${CURRENT_FEATURE}/${SUB_BRANCH} $*
+elif [ "${COMMAND}" == "reset" ]; then
+    SUB_BRANCH=$1
+    shift
+    if [ -z "${SUB_BRANCH}" -o -z "${CURRENT_FEATURE}" ]; then
+        _print_help "rebase"
+        exit 1
+    fi
+    git reset ${CURRENT_FEATURE}/${SUB_BRANCH} $*
+fi
