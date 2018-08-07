@@ -29,6 +29,7 @@ modules+=('ps')
 modules+=('buku')
 modules+=('fzf')
 modules+=('docker')
+modules+=('kube')
 for f in ${modules[@]}
 do
     if [ -e $bashdir/$f ]

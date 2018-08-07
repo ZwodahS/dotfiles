@@ -25,7 +25,7 @@ if [ $TARGET == '__all__' -o $TARGET == 'bash' ]; then
     read HOSTNAME
     echo $HOSTNAME > ${DOTFILES_PATH}/hostname
     cd ~
-    FILES=(".tmux.conf" ".gitconfig" ".bash_profile" ".gitignore" ".ackrc" ".inputrc" ".agignore" ".pythonrc")
+    FILES=(".tmux.conf" ".gitconfig" ".bash_profile" ".gitignore" ".ackrc" ".inputrc" ".agignore" ".pythonrc" ".kube_alias")
     for F in ${FILES[@]}; do
         if [ -e "$F" ]; then
             rm -rf $F;
@@ -39,6 +39,7 @@ if [ $TARGET == '__all__' -o $TARGET == 'bash' ]; then
     ln -s ${DOTFILES_PATH}/inputrc .inputrc
     ln -s ${DOTFILES_PATH}/agignore .agignore
     ln -s ${DOTFILES_PATH}/pythonrc.py .pythonrc
+    ln -s ${DOTFILES_PATH}/kube_alias .kube_alias
     if [ -e ".bashrc" ]; then
         mv .bashrc .bashrc.old
     fi
