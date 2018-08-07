@@ -45,17 +45,6 @@ if [ $TARGET == '__all__' -o $TARGET == 'bash' ]; then
     fi
 fi
 
-# clone all ext repo
-mkdir -p ext
-pushd ext > /dev/null
-git clone git@github.com:zwodahs/kube_alias
-popd
-
-pushd bin > /dev/null
-if [ ! -e "bin/kube-parse-args.py" ]; then
-ln -s ${DOTFILES_PATH}/bin/ext/kube-parse-args.py .
-popd
-
 cd ${DOTFILES_PATH}
 if [ $TARGET == '__all__' -o $TARGET == 'vim' ]; then
     if [ ! -e vimfiles ]; then
