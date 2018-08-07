@@ -1,1 +1,1 @@
-../ext/kube-alias/kube-parse-args.py
+../extrepo/kube-alias/kube-parse-args.py
