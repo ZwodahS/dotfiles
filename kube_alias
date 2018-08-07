@@ -1,1 +1,5 @@
 use=config use-context
+context=config current-context
+svc=get svc
+po=get po
+de=get deploy
