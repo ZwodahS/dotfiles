@@ -1,5 +1,12 @@
-use=config use-context
-context=config current-context
-svc=get svc
-po=get po
-de=get deploy
+{
+    "command": {
+        "use": [ "config", "use-context" ],
+        "ctx": [ "config", "current-context" ],
+        "svc": [ "get", "svc" ],
+        "po": [ "get", "po" ],
+        "de": [ "get", "deploy" ]
+    },
+    "object": {
+        "de": "deployment"
+    }
+}

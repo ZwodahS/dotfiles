@@ -1,26 +1,14 @@
 #!/bin/bash
 
 function _kubectl() {
-    FOUND=""
-    if [ -n "$1" -a -e ~/.kube_alias ]; then
-        while read ALIAS; do
-            COMMAND=$(echo $ALIAS | cut -d '=' -f 1)
-            if [ "${COMMAND}" == "$1" ]; then
-                FOUND=$(echo $ALIAS | cut -d '=' -f 2-)
-                break
-            fi
-        done < ~/.kube_alias
-    fi
-
-    if [ -n "${FOUND}" ]; then
-        shift
-        kubectl ${FOUND} $*
-    else
-        kubectl $*
-    fi
+    REPLACE=$(kube-parse-args.py $*)
+    kubectl ${REPLACE}
 }
 
-
 if [ -n "$(which kubectl)" ]; then
-    alias k=_kubectl
+    if [ -n "$(which kube-parse-args.py)" ]; then
+        alias k=_kubectl
+    else
+        alias k=kubectl
+    fi
 fi
