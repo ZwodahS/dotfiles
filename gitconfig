@@ -23,8 +23,10 @@
     sh = show --color --pretty=format:%b
 
     uncommit = reset HEAD~1
+    recommit = commit --amend --no-edit
 
     a = add -u
+    ap = add -u -p
 
     b = branch
     bb = branch -vv

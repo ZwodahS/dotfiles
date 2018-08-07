@@ -102,4 +102,13 @@ elif [ "${COMMAND}" == "reset" ]; then
         exit 1
     fi
     git reset ${CURRENT_FEATURE}/${SUB_BRANCH} $*
+elif [ "${COMMAND}" == "move" ]; then
+    SUB_BRANCH=$1
+    TARGET=$2
+    shift
+    if [ -z "${SUB_BRANCH}" -o -z "${CURRENT_FEATURE}" ]; then
+        _print_help "rebase"
+        exit 1
+    fi
+    git branch -f ${CURRENT_FEATURE}/${SUB_BRANCH} ${TARGET}
 fi
