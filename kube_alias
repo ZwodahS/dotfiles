@@ -4,9 +4,14 @@
         "ctx": [ "config", "current-context" ],
         "svc": [ "get", "svc" ],
         "po": [ "get", "po" ],
-        "de": [ "get", "deploy" ]
+        "de": [ "get", "deploy" ],
+        "g": [ "get" ],
+        "l": [ "logs" ],
+        "lf": [ "logs", "-f"]
     },
     "object": {
-        "de": "deployment"
+        "de": "deployment",
+        "se": "secret",
+        "p": "pod"
     }
 }

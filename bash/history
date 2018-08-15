@@ -54,18 +54,6 @@ function _hrmindex()
 
 alias hrmi="_hrmindex"
 
-function _hrmgrep()
-{
-    params=$@
-    TMP_HISTORY=~/.bash_history_partial.tmp
-    if [ -z "$params" ]; then
-        echo "nothing to remove"
-    else
-        cat ~/.bash_history | grep -v $params > $TMP_HISTORY.2
-        mv $TMP_HISTORY.2 ~/.bash_history
-    fi
-}
-
 PROMPT_COMMAND=_bash_history_sync
 
 # when using !<num> expand history, put the command to the CLI instead of running direct.
