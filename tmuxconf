@@ -46,7 +46,8 @@ bind-key ^l swap-window -t +1
 #################### pane stuffs ####################
 bind-key x confirm-before kill-pane                     # kill
 bind-key w display-panes                                # selection
-bind-key ^w display-panes
+bind-key ^w display-panes                                # selection
+bind-key e command-prompt "select-pane -t %%"
 bind-key | command-prompt "resize-pane -x %%"           # resize width
 bind-key _ command-prompt "resize-pane -y %%"           # resize height
 bind-key v split-window -h -c '#{pane_current_path}'    # vertical split

@@ -2,16 +2,22 @@
     "command": {
         "use": [ "config", "use-context" ],
         "ctx": [ "config", "current-context" ],
+        "ctxs": [ "config", "get-contexts" ],
         "svc": [ "get", "svc" ],
         "po": [ "get", "po" ],
         "de": [ "get", "deploy" ],
         "g": [ "get" ],
         "l": [ "logs" ],
-        "lf": [ "logs", "-f"]
+        "lf": [ "logs", "-f", "--tail=10" ]
     },
     "object": {
         "de": "deployment",
         "se": "secret",
         "p": "pod"
+    },
+    "replaces": {
+        "get": {
+            "--sl": "--show-labels"
+        }
     }
 }
