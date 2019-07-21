@@ -43,7 +43,10 @@ git_ahead_behind() {
 }
 _get_git()
 {
-    if git rev-parse --git-dir >/dev/null 2>&1; then
+    # if i am in a .git folder, don't bother as it will keep reporting fatal.
+    if [ -n "$(pwd | grep '.git')" ]; then
+        return 0
+    elif git rev-parse --git-dir >/dev/null 2>&1; then
         echo "$(branch_color) ⑂ $(parse_git_branch)$(git_ahead_behind) $(tput sgr0)"
     else
         return 0

@@ -4,3 +4,4 @@ venv3
 dist
 tags
 *.pyc
+node_modules

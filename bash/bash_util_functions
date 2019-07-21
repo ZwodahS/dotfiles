@@ -5,7 +5,7 @@ if [ -n "$__UTIL_GUARD__" ]; then return; fi
 __UTIL_GUARD__=1
 
 function randomstring() {
-    echo $(date | md5sum | cut -d ' ' -f 1);
+    echo $(date | shasum | cut -d ' ' -f1);
 }
 
 # readlink in mac does not allow me to do follow, so implement it as a function instead

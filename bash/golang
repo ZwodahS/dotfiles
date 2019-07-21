@@ -70,3 +70,7 @@ goenv() {
 }
 
 [ -n "$(which go)" ] && goenv_reset
+
+if [ -n "$(which go)" ]; then
+    alias gofmtyrself="find . -name '*.go' -exec go fmt {} \;"
+fi
