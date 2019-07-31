@@ -1,0 +1,131 @@
+####################################################################
+# TmUX configuration
+# https://github.com/ZwodahS/dotfiles
+####################################################################
+# unbind all keys
+# If i am not using, don't even have them in the first place.
+unbind-key -a
+# Set the prefix to ^Q
+set -g prefix ^Q
+#### keep track of what keys i have used
+# dhjklnoprtwxz [] <up> <down> <left> <right>
+# WT
+# ^ + hljmqrw
+#################### basic stuffs #####################
+# These section is important configuration
+bind-key d detach
+# WARNING : NESTED TMUX DESTROY YOUR SANITY
+bind-key ^q send-prefix
+# force a reload of the config file
+bind-key ^r source-file ~/.tmux.conf
+bind-key : command-prompt
+bind-key ? list-keys
+#################### session stuffs ####################
+# switch tmux session
+bind-key t command-prompt "switch-client -t %%"
+# choose tmux session
+bind-key T choose-session
+#################### window stuffs ####################
+bind-key n new-window -c '#{pane_current_path}'         # new
+bind-key z confirm-before kill-window                   # kill
+bind-key r command-prompt "rename-window %%"            # rename
+bind-key W choose-window
+bind-key 1 select-window -t :1
+bind-key 2 select-window -t :2
+bind-key 3 select-window -t :3
+bind-key 4 select-window -t :4
+bind-key 5 select-window -t :5
+bind-key 6 select-window -t :6
+bind-key 7 select-window -t :7
+bind-key 8 select-window -t :8
+bind-key 9 select-window -t :9
+bind-key 0 command-prompt "select-window -t :%%"
+# window swapping
+bind-key ^h swap-window -t -1
+bind-key ^l swap-window -t +1
+#################### pane stuffs ####################
+bind-key x confirm-before kill-pane                     # kill
+bind-key w display-panes                                # selection
+bind-key ^w display-panes                                # selection
+bind-key e command-prompt "select-pane -t %%"
+bind-key | command-prompt "resize-pane -x %%"           # resize width
+bind-key _ command-prompt "resize-pane -y %%"           # resize height
+bind-key v split-window -h -c '#{pane_current_path}'    # vertical split
+bind-key s split-window -v -c '#{pane_current_path}'    # horizontal split
+# pane resizing, by factor of 2, 1 is too slow, 3 is too fast.
+bind-key -r k resize-pane -U 2
+bind-key -r j resize-pane -D 2
+bind-key -r h resize-pane -L 2
+bind-key -r l resize-pane -R 2
+bind-key + resize-pane -Z    # zoom
+bind-key = resize-pane -Z    # zoom
+bind-key -r Up select-pane -U
+bind-key -r Down select-pane -D
+bind-key -r Left select-pane -L
+bind-key -r Right select-pane -R
+# pane swapping
+bind-key ^k swap-pane -U
+bind-key ^j swap-pane -D
+# pane move to channel
+bind-key ^m command-prompt "join-pane -t %%"
+#################### buffer stuffs ####################
+bind-key [ copy-mode
+bind-key ] command-prompt "save-buffer -b 0 %%"
+bind-key p paste-buffer
+bind-key o choose-buffer
+#################### Tmux configuration ####################
+# Below from https://mutelight.org/practical-tmux
+# start window numbering at 1
+set -g base-index 1
+# start pane numbering at 1
+set -g pane-base-index 1
+# Faster command sequences
+set -g escape-time 0
+set -g repeat-time 750
+# Activity monitoring
+setw -g monitor-activity on
+set -g visual-activity on
+# Set status bar
+set -g status-bg '#444444'
+set -g status-fg '#AAFFAA'
+# Highlight active window
+set -g window-status-current-style bg=colour192,fg='#333333'
+set -g window-status-style bg='#666666',bold,fg='#FFFFFF'
+# Pane number display
+set-option -g display-panes-active-colour blue
+set-option -g display-panes-colour colour166
+# set-option -g default-terminal "screen-256color" # this used to work, keeping it here for reference
+# set-option -g default-terminal "tmux-256color" # this might only work in newer tmux.
+set-option -g default-terminal "xterm-256color"
+set-option -ga terminal-overrides ",*256col*:Tc"
+set-option -g status-position bottom
+# vi keys in copy mode
+set -g mode-keys vi
+# mouse select
+# setw -g mode-mouse on
+# set-option -g mouse-select-pane on
+set-option -g renumber-windows on
+
+set-window-option -g status-left "#(~/.dotfiles/tmux/status_left.sh)"
+set-window-option -g status-right "#(~/.dotfiles/tmux/status_right.sh)"
+set-window-option -g status-left-length 30
+set-window-option -g status-right-length 100
+set-window-option -g status-interval 60
+display-message "tmux configuration reloaded"
+
+set-option -g pane-active-border-style fg=green,bg=black
+
+#### tmux plugins
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+
+## Resurrect
+# resurrect abit too destructive for my liking.
+# set -g @plugin 'tmux-plugins/tmux-resurrect'
+# set -g @resurrect-save 'S'
+# set -g @resurrect-restore 'R'
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+# Load only if tpm exist.
+# The other code is not important since it only set variables
+if-shell "if [ -e ~/.tmux/plugins/tpm/tpm ]; then true; else false; fi" "run '~/.tmux/plugins/tpm/tpm'; display-message 'plugins loaded'"
