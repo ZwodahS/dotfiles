@@ -5,3 +5,4 @@ dist
 tags
 *.pyc
 node_modules
+__pycache__

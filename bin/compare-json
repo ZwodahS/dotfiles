@@ -1,0 +1,52 @@
+#!/usr/bin/env python3
+
+import json
+import sys
+
+f1 = sys.argv[1]
+f2 = sys.argv[2]
+
+def compare(data1, data2, root_key=""):
+
+    if type(data1) != type(data2):
+        print("{} type is not the same".format(root_key))
+        return
+
+    elif isinstance(data1, list):
+        if len(data1) != len(data2):
+            print("{} len is not the same".format(root_key))
+            return
+
+        for ind, d1 in enumerate(data1):
+            d2 = data2[ind]
+            compare(d1, d2, "{}[{}]".format(root_key, ind))
+
+    elif isinstance(data1, dict):
+        keys1 = set(data1.keys())
+        keys2 = set(data2.keys())
+
+        common = keys1 & keys2
+
+        for key in keys1 - keys2:
+            print("{}.{} does not exists in [{}]".format(root_key, key, f2))
+
+        for key in keys2 - keys1:
+            print("{}.{} does not exists in [{}]".format(root_key, key, f1))
+
+        for key in common:
+            compare(data1[key], data2[key], "{}.{}".format(root_key, key))
+
+    elif data1 != data2:
+        print("{} is not equal, {} vs {}".format(root_key, data1, data2))
+
+if __name__ == "__main__":
+    file1 = sys.argv[1]
+    file2 = sys.argv[2]
+
+    with open(file1) as f:
+        data1 = json.loads(f.read())
+
+    with open(file2) as f:
+        data2 = json.loads(f.read())
+
+    compare(data1, data2)
