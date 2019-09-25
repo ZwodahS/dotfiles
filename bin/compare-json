@@ -7,6 +7,8 @@ f1 = sys.argv[1]
 f2 = sys.argv[2]
 
 def compare(data1, data2, root_key=""):
+    if data1 == data2:
+        return
 
     if type(data1) != type(data2):
         print("{} type is not the same".format(root_key))
