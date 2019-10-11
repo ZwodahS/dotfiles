@@ -1,1 +1,16 @@
+# C-W to delete the whole word
 Control-W: backward-kill-word
+
+### Following tips taken from https://bluz71.github.io/2018/03/15/bash-shell-tweaks-tips.html
+
+# cycle through completion choices
+TAB: menu-complete
+# shift tab for previous completion
+"\e[Z": menu-complete-backward
+# display all when first press tab
+set show-all-if-ambiguous on
+set colored-stats on
+set colored-completion-prefix on
+set completion-ignore-case on
+set completion-map-case on
+set mark-symlinked-directories on

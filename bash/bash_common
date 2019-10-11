@@ -56,6 +56,15 @@ else
 fi
 #################### Python ####################
 
+#################### Haxe ####################
+if [ -n "$(which haxe)" ]; then
+    alias hx="haxe"
+    alias hxlib="haxelib"
+else
+    alias hx="echo haxe is not installed"
+fi
+#################### Python ####################
+
 #################### Apparix ####################
 if [ -n "$(which apparix)" ]; then
     alias a="apparix"
@@ -66,6 +75,8 @@ fi
 
 # disable rm
 alias rm='echo "do not use rm, use trash-put(trash) instead "; false'
+alias cp='/bin/cp -i'
+alias mv='/bin/mv -i'
 
 # various cd
 alias ..="cd .."
