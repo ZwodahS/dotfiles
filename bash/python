@@ -86,3 +86,5 @@ alias pyenv='_pyenv'
 alias pymenv='_pymenv'
 # export PYTHONSTARTUP="$HOME/.pythonrc"
 
+# flake8
+alias f8="flake8"

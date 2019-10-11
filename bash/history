@@ -1,15 +1,8 @@
-# A few utility function to search and clean up history
-alias hclean="cat ~/.bash_history | sed 's/ *$//g' | sort | uniq > ~/.bash_history.clean && mv ~/.bash_history.clean ~/.bash_history"
-alias ht="history | tail -n15"
-alias htt="history | tail -n30"
-alias httt="history | tail -n45"
-
-HISTCONTROL=ignorespace:ignoredups
-# export HISTCONTROL=erasedups #:ignorespace
-# shopt -s histappend
-shopt -s histverify
+HISTCONTROL='erasedups:ignoreboth'
+shopt -s histverify histappend
 # http://unix.stackexchange.com/questions/1288/preserve-bash-history-in-multiple-terminal-windows
 HISTSIZE=100000
+
 function _bash_history_sync()
 {
     builtin history -a
@@ -53,8 +46,13 @@ function _hrmindex()
 }
 
 alias hrmi="_hrmindex"
+alias hclean="cat ~/.bash_history | sed 's/ *$//g' | sort | uniq > ~/.bash_history.clean && mv ~/.bash_history.clean ~/.bash_history"
+# alias ht="history | tail -n15"
+# alias htt="history | tail -n30"
+# alias httt="history | tail -n45"
 
-PROMPT_COMMAND=_bash_history_sync
+# PROMPT_COMMAND=_bash_history_sync
+PROMOT_COMMAND="history -a"
 
 # when using !<num> expand history, put the command to the CLI instead of running direct.
 shopt -s histverify

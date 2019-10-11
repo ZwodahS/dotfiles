@@ -86,5 +86,5 @@ alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
 alias .......="cd ../../../../../.."
 
-# flake8
-alias f8="flake8"
+shopt -s autocd
+shopt -s globstar
