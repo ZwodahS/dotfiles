@@ -92,7 +92,7 @@ get_working_dir ()
 
 get_virtualenv () {
     if [ -n "${VIRTUAL_ENV}" ]; then
-        if [ -z "$(echo $(pwd) | grep $(dirname $VIRTUAL_ENV))" ]; then
+        if [ -z "$(echo $(pwd -P) | grep $(dirname $VIRTUAL_ENV))" ]; then
             echo " $(tput setab 160)($(basename $(echo $VIRTUAL_ENV)))$(tput setab 241)"
         else
             echo " ($(basename $(echo $VIRTUAL_ENV)))"

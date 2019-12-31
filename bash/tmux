@@ -1,7 +1,6 @@
 # various alias related to tmux
 alias tma='tmux attach -t'
 alias tmn='tmux new -s'
-alias tms='tmux switch -t'
 alias tml='tmux ls'
 
 # Fix SSH Forward-Agent in tmux sessions
