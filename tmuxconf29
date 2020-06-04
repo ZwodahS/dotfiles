@@ -41,8 +41,8 @@ bind-key 8 select-window -t :8
 bind-key 9 select-window -t :9
 bind-key 0 command-prompt "select-window -t :%%"
 # window swapping
-bind-key ^h swap-window -t -1
-bind-key ^l swap-window -t +1
+bind-key ^h swap-window -dt -1
+bind-key ^l swap-window -dt +1
 #################### pane stuffs ####################
 bind-key x confirm-before kill-pane                     # kill
 bind-key w display-panes                                # selection
