@@ -9,3 +9,4 @@ venv3
 .git.hidden
 .scratch
 tags
+.local

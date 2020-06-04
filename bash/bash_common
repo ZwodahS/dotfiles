@@ -20,6 +20,14 @@ stty -ixon
 
 bind 'set bind-tty-special-chars off'
 
+alias q='. .local'
+
+if [ -n "$(which make)" ]; then
+    alias m="make"
+else
+    alias m="Make not install"
+fi
+
 #################### Vim and Nvim ####################
 # set 'v' alias based on if nvim is present
 if [ -n "$(which nvim)" ]; then
