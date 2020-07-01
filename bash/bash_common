@@ -7,8 +7,9 @@ LC_CTYPE="en_US.UTF-8"
 OS_TYPE="$(uname)"
 
 if [ "${OS_TYPE}" == "Darwin" ]; then
-    alias l='ls -Glh'
-    alias ll='ls -Glh'
+    alias l='ls -Ggoh'
+    alias ll='ls -Ggoh'
+    alias lll='ls -Glh'
     alias wget="curl -O"
 elif [ "${OS_TYPE}" == "Linux" ]; then
     alias ll='ls -lh --color'

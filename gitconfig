@@ -46,6 +46,7 @@
 
     dh = diff HEAD~1..HEAD
     pf = pull --ff-only
+    pom = push origin master
 
     unstash = stash pop
 
