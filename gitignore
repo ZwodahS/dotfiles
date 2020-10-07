@@ -10,3 +10,4 @@ venv3
 .scratch
 tags
 .local
+.project.*.vim

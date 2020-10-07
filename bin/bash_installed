@@ -70,6 +70,7 @@ check_item 'python3'
 check_item 'node'
 check_item 'npm'
 check_item 'go' 'version'
+check_item 'haxe'
 
 title "Server Applications"
 check_item 'dokku'
