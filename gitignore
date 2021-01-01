@@ -11,3 +11,4 @@ venv3
 tags
 .local
 .project.*.vim
+.lint.hxml

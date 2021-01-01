@@ -46,6 +46,7 @@ fi
 # set g and t as git and tig if present
 if [ -n "$(which git)" ]; then
     alias g="git"
+    alias gi="git info"
 else
     alias g="echo git is not installed"
 fi

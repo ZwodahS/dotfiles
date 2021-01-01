@@ -57,6 +57,7 @@
     sb = syncbranch
     move = syncbranch move
     sync = syncbranch sync
+    i = info
 
 [core]
     autocrlf = false
