@@ -37,7 +37,7 @@ _pyenv ()
     else
         DIR="venv3"
         ODIR="venv"
-        PYRUNTIME="python3"
+        PYRUNTIME="$(which python3)"
     fi
     if [ ! -e "$DIR" ]; then
         if [ -e "$ODIR" -a -z "$1" ]; then

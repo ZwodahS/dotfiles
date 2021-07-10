@@ -13,6 +13,7 @@
 
 [alias]
     l = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    l1 = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -1
     l9 = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -9
     la = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all
     lh = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit HEAD
@@ -31,9 +32,9 @@
     b = branch
     bb = branch -vv
 
-    d = diff
-    dc = diff --cached
-    ds = diff --name-status
+    d = diff -w
+    dc = diff --cached -w
+    ds = diff --name-status -w
 
     # custom plug-in
     f = feature
@@ -44,7 +45,8 @@
     co = checkout
     cont = checkout --no-track
 
-    dh = diff HEAD~1..HEAD
+    dh = diff -w HEAD~1..HEAD
+    dm = diff -w master..HEAD
     pf = pull --ff-only
     pom = push origin master
 
@@ -63,7 +65,7 @@
     autocrlf = false
     excludesfile = ~/.gitignore
     editor = /usr/bin/vim
-	pager = less -x1,5
+	pager = less -x2
 
 [github]
 	user = ZwodahS

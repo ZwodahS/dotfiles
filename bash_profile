@@ -31,6 +31,7 @@ modules+=('fzf')
 modules+=('docker')
 modules+=('kube')
 modules+=('completion')
+modules+=('mac')
 for f in ${modules[@]}
 do
     if [ -e $bashdir/$f ]

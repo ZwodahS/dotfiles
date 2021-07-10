@@ -12,3 +12,5 @@ tags
 .local
 .project.*.vim
 .lint.hxml
+.sessions
+.breakpoints

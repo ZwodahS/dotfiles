@@ -5,21 +5,21 @@ COLOR_NO_CHANGE=$(tput setaf 8)
 C_CLEAR=$(tput sgr0)
 
 IFS=""
-ls -lh --color | while read LINE; do
+ls -lhG | while read LINE; do
     if $(git rev-parse --git-dir >/dev/null 2>&1); then
         FILE_WITH_COLOR=$(echo $LINE | rev | cut -d ' ' -f 1 | rev)
         FILE=$(echo $FILE_WITH_COLOR | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g")
         OTHER=$(echo $LINE | rev | cut -d ' ' -f 2- | rev)
         if [ -d $FILE ]; then
-            AUGMENT="${COLOR_NO_CHANGE}--${C_CLEAR}"
+            AUGMENT="${COLOR_NO_CHANGE}-${C_CLEAR}"
         else
             STATUS=$(git status -s $FILE | sed 's/^ *//g' | cut -d ' ' -f 1)
             if [ "$STATUS" == "M" ]; then
-                AUGMENT="${COLOR_MODIFIED}MM${C_CLEAR}"
+                AUGMENT="${COLOR_MODIFIED}+${C_CLEAR}"
             elif [ "$STATUS" == "??" ]; then
-                AUGMENT="${COLOR_UNTRACKED}??${C_CLEAR}"
+                AUGMENT="${COLOR_UNTRACKED}?${C_CLEAR}"
             else
-                AUGMENT="${COLOR_NO_CHANGE}--${C_CLEAR}"
+                AUGMENT="${COLOR_NO_CHANGE}-${C_CLEAR}"
             fi
         fi
         echo $OTHER $AUGMENT $FILE_WITH_COLOR

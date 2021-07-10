@@ -11,6 +11,6 @@ TAB: menu-complete
 set show-all-if-ambiguous on
 set colored-stats on
 set colored-completion-prefix on
-set completion-ignore-case on
+# set completion-ignore-case on
 set completion-map-case on
 set mark-symlinked-directories on
