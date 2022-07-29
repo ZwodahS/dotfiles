@@ -33,6 +33,7 @@ fi
 # set 'v' alias based on if nvim is present
 if [ -n "$(which nvim)" ]; then
     alias v="nvim"
+    alias vv="nvim .flow.zdoc"
     alias vr="nvim -R"
     export EDITOR='nvim'
 else

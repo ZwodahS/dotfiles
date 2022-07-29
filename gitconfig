@@ -12,29 +12,35 @@
     ui = true
 
 [alias]
-    l = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-    l1 = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -1
-    l9 = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -9
-    la = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all
-    lh = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit HEAD
+    l = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr | %ar) %C(bold blue)<%an>%Creset' --abbrev-commit
+    l1 = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr | %ar) %C(bold blue)<%an>%Creset' --abbrev-commit -1
+    l9 = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr | %ar) %C(bold blue)<%an>%Creset' --abbrev-commit -9
+    la = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr | %ar) %C(bold blue)<%an>%Creset' --abbrev-commit --all
+    lh = log --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr | %ar) %C(bold blue)<%an>%Creset' --abbrev-commit HEAD
 
     s = status
     ss = status -s
     su = status -uno
     sh = show --color --pretty=format:%b
 
-    uncommit = reset HEAD~1
+    uncommit = reset HEAD~1 --soft
+    unstage = reset HEAD .
     recommit = commit --amend --no-edit
 
     a = add -u
     ap = add -u -p
 
+    rp = reset -p
+
     b = branch
     bb = branch -vv
 
-    d = diff -w
-    dc = diff --cached -w
-    ds = diff --name-status -w
+    d = diff
+    dc = diff --cached
+    ds = diff --name-status
+    dw = diff -w
+    dwc = diff --cached -w
+    dsw = diff --name-status -w
 
     # custom plug-in
     f = feature
@@ -52,7 +58,7 @@
 
     unstash = stash pop
 
-    vim = difftool --tool vimdiff
+    vim = difftool --tool=nvimdiff
 
     ### custom plugins
     v = visibility
@@ -60,6 +66,9 @@
     move = syncbranch move
     sync = syncbranch sync
     i = info
+
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 
 [core]
     autocrlf = false
@@ -69,3 +78,5 @@
 
 [github]
 	user = ZwodahS
+[init]
+	defaultBranch = main

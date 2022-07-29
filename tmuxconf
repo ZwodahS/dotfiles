@@ -47,22 +47,21 @@ bind-key ^l swap-window -dt +1
 bind-key x confirm-before kill-pane                     # kill
 bind-key w display-panes                                # selection
 bind-key ^w display-panes                                # selection
-bind-key e command-prompt "select-pane -t %%"
 bind-key | command-prompt "resize-pane -x %%"           # resize width
 bind-key _ command-prompt "resize-pane -y %%"           # resize height
 bind-key v split-window -h -c '#{pane_current_path}'    # vertical split
 bind-key s split-window -v -c '#{pane_current_path}'    # horizontal split
 # pane resizing, by factor of 2, 1 is too slow, 3 is too fast.
-bind-key -r k resize-pane -U 2
-bind-key -r j resize-pane -D 2
-bind-key -r h resize-pane -L 2
-bind-key -r l resize-pane -R 2
+bind-key -r Up resize-pane -U 2
+bind-key -r Down resize-pane -D 2
+bind-key -r Left resize-pane -L 2
+bind-key -r Right resize-pane -R 2
+bind-key -r k select-pane -U
+bind-key -r j select-pane -D
+bind-key -r h select-pane -L
+bind-key -r l select-pane -R
 bind-key + resize-pane -Z    # zoom
 bind-key = resize-pane -Z    # zoom
-bind-key -r Up select-pane -U
-bind-key -r Down select-pane -D
-bind-key -r Left select-pane -L
-bind-key -r Right select-pane -R
 # pane swapping
 bind-key ^k swap-pane -U
 bind-key ^j swap-pane -D
@@ -83,17 +82,19 @@ set -g pane-base-index 1
 set -g escape-time 0
 set -g repeat-time 750
 # Activity monitoring
-setw -g monitor-activity on
-set -g visual-activity on
+set -g monitor-activity on
+set -g visual-activity off
 # Set status bar
-set -g status-bg '#444444'
-set -g status-fg '#AAFFAA'
+set -g status-bg '#1f2335'
+set -g status-fg '#7aa2f7'
 # Highlight active window
-set -g window-status-current-style bg=colour192,fg='#333333'
-set -g window-status-style bg='#666666',bold,fg='#FFFFFF'
+set -g window-status-current-style bg='#e0af68',fg='#101010'
+set -g window-status-style bg='#3B4261',fg='#7aa2f7'
+set -g window-status-activity-style bg='#7dcfff',fg='#101010'
+set -g window-status-bell-style bg='#7dcfff',fg='#101010'
 # Pane number display
-set-option -g display-panes-active-colour blue
-set-option -g display-panes-colour colour166
+set-option -g display-panes-active-colour '#7aa2f7'
+set-option -g display-panes-colour '#3B4261'
 # set-option -g default-terminal "screen-256color" # this used to work, keeping it here for reference
 # set-option -g default-terminal "tmux-256color" # this might only work in newer tmux.
 set-option -g default-terminal "xterm-256color"
@@ -111,21 +112,5 @@ set-window-option -g status-right "#(~/.dotfiles/tmux/status_right.sh)"
 set-window-option -g status-left-length 30
 set-window-option -g status-right-length 100
 set-window-option -g status-interval 60
-display-message "tmux configuration reloaded"
 
-set -g pane-active-border-style "bg=#333333 fg=white"
-
-#### tmux plugins
-# List of plugins
-set -g @plugin 'tmux-plugins/tpm'
-
-## Resurrect
-# resurrect abit too destructive for my liking.
-# set -g @plugin 'tmux-plugins/tmux-resurrect'
-# set -g @resurrect-save 'S'
-# set -g @resurrect-restore 'R'
-
-# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
-# Load only if tpm exist.
-# The other code is not important since it only set variables
-if-shell "if [ -e ~/.tmux/plugins/tpm/tpm ]; then true; else false; fi" "run '~/.tmux/plugins/tpm/tpm'; display-message 'plugins loaded'"
+set -g pane-active-border-style "bg=#1f2335 fg=#7aa2f7"

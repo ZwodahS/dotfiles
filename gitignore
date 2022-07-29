@@ -11,6 +11,8 @@ venv3
 tags
 .local
 .project.*.vim
-.lint.hxml
 .sessions
 .breakpoints
+.lsp.hxml
+.gen_tags.sh
+.flow.zdoc
