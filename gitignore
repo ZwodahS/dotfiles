@@ -16,3 +16,4 @@ tags
 .lsp.hxml
 .gen_tags.sh
 .flow.zdoc
+tmux.sh

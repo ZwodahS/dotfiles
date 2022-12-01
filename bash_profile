@@ -21,6 +21,7 @@ modules+=('python')
 modules+=('tmux')
 modules+=('history')
 modules+=('javascript')
+modules+=('ruby')
 modules+=('golang')
 modules+=('git')
 modules+=('git_auto')
@@ -39,4 +40,3 @@ do
         source $bashdir/$f
     fi
 done
-

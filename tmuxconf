@@ -97,8 +97,9 @@ set-option -g display-panes-active-colour '#7aa2f7'
 set-option -g display-panes-colour '#3B4261'
 # set-option -g default-terminal "screen-256color" # this used to work, keeping it here for reference
 # set-option -g default-terminal "tmux-256color" # this might only work in newer tmux.
-set-option -g default-terminal "xterm-256color"
-set-option -ga terminal-overrides ",*256col*:Tc"
+# set-option -g default-terminal "xterm-256color"
+set -g default-terminal "tmux-256color"
+set -ag terminal-overrides ",xterm-256color:RGB"
 set-option -g status-position bottom
 # vi keys in copy mode
 set -g mode-keys vi

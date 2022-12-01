@@ -1,0 +1,8 @@
+if [ -e "$HOME/.rvm" ]; then
+    export RVM_DIR="$HOME/.rvm"
+
+    function load_rvm() {
+        [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+        export PATH=$PATH:~/.rvm/bin/rvm
+    }
+fi
