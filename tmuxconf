@@ -105,8 +105,8 @@ set -g status-fg '#FFFF00' # ????
 # ## Highlight active window
 set -g window-status-current-style bg='#9a6062',fg='#ece1d7'
 set -g window-status-style bg='#292522',fg='#ece1d7'
-set -g window-status-activity-style bg='#ffffff',fg='#101010' # ????
-set -g window-status-bell-style bg='#ffffff',fg='#101010' # ????
+set -g window-status-activity-style bg='#d47766',fg='#101010'
+set -g window-status-bell-style bg='#d47766',fg='#101010'
 # ## Pane number display
 set-option -g display-panes-active-colour '#78997a'
 set-option -g display-panes-colour '#c1a78e'
