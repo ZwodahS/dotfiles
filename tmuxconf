@@ -84,17 +84,35 @@ set -g repeat-time 750
 # Activity monitoring
 set -g monitor-activity on
 set -g visual-activity off
-# Set status bar
-set -g status-bg '#1f2335'
-set -g status-fg '#7aa2f7'
-# Highlight active window
-set -g window-status-current-style bg='#e0af68',fg='#101010'
-set -g window-status-style bg='#3B4261',fg='#7aa2f7'
-set -g window-status-activity-style bg='#7dcfff',fg='#101010'
-set -g window-status-bell-style bg='#7dcfff',fg='#101010'
-# Pane number display
-set-option -g display-panes-active-colour '#7aa2f7'
-set-option -g display-panes-colour '#3B4261'
+
+# Theme Tokyonight
+## Set status bar
+# set -g status-bg '#1f2335'
+# set -g status-fg '#7aa2f7'
+# ## Highlight active window
+# set -g window-status-current-style bg='#e0af68',fg='#101010'
+# set -g window-status-style bg='#3B4261',fg='#7aa2f7'
+# set -g window-status-activity-style bg='#7dcfff',fg='#101010'
+# set -g window-status-bell-style bg='#7dcfff',fg='#101010'
+# ## Pane number display
+# set-option -g display-panes-active-colour '#7aa2f7'
+# set-option -g display-panes-colour '#3B4261'
+# set -g pane-active-border-style "bg=#1f2335 fg=#7aa2f7"
+
+# Theme Melange
+set -g status-bg '#151414'
+set -g status-fg '#FFFF00' # ????
+# ## Highlight active window
+set -g window-status-current-style bg='#9a6062',fg='#ece1d7'
+set -g window-status-style bg='#292522',fg='#ece1d7'
+set -g window-status-activity-style bg='#ffffff',fg='#101010' # ????
+set -g window-status-bell-style bg='#ffffff',fg='#101010' # ????
+# ## Pane number display
+set-option -g display-panes-active-colour '#78997a'
+set-option -g display-panes-colour '#c1a78e'
+set -g pane-active-border-style "bg=#292522 fg=#78997a"
+
+
 # set-option -g default-terminal "screen-256color" # this used to work, keeping it here for reference
 # set-option -g default-terminal "tmux-256color" # this might only work in newer tmux.
 # set-option -g default-terminal "xterm-256color"
@@ -113,5 +131,3 @@ set-window-option -g status-right "#(~/.dotfiles/tmux/status_right.sh)"
 set-window-option -g status-left-length 30
 set-window-option -g status-right-length 100
 set-window-option -g status-interval 60
-
-set -g pane-active-border-style "bg=#1f2335 fg=#7aa2f7"
